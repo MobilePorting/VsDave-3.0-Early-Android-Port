@@ -127,6 +127,9 @@ class CharacterSelectState extends MusicBeatState
 	
 	override public function create():Void 
 	{
+                Paths.clearUnusedMemory();
+                Paths.clearStoredMemory();
+
 		super.create();
 
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
