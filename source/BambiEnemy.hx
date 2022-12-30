@@ -81,7 +81,7 @@ class BambiEnemy extends FlxSprite
 					//facing = DOWN;
 			}
 	
-			switch (facing)
+			/*switch (facing)
 			{
 				case LEFT, RIGHT:
 					animation.play("lr");
@@ -93,7 +93,7 @@ class BambiEnemy extends FlxSprite
 					animation.play("d");
 	
 				case _:
-			}
+			}*/
 		}
 
 		if ((velocity.x != 0 || velocity.y != 0))
