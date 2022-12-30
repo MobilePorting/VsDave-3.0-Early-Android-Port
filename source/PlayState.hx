@@ -247,7 +247,7 @@ class PlayState extends MusicBeatState
 	var bfNoteCamOffset:Array<Float> = new Array<Float>();
 	var dadNoteCamOffset:Array<Float> = new Array<Float>();
 
-	var video:MP4Handler;
+	//var video:MP4Handler;
 	public var modchart:ExploitationModchartType;
 	var weirdBG:FlxSprite;
 	var cuzsieKapiEletricCockadoodledoo:Array<FlxSprite> = [];
@@ -1741,7 +1741,7 @@ class PlayState extends MusicBeatState
 		inCutscene = true;
 		FlxG.sound.music.stop();
 
-		video = new MP4Handler();
+		/*video = new MP4Handler();
 		video.finishCallback = function()
 		{
 			switch (curSong.toLowerCase())
@@ -1757,19 +1757,19 @@ class PlayState extends MusicBeatState
 					startCountdown();
 			}
 		}
-		video.playVideo(Paths.video(name));
+		video.playVideo(Paths.video(name));*/
 	}
 
 	function playEndCutscene(name:String)
 	{
 		inCutscene = true;
 
-		video = new MP4Handler();
+		/*video = new MP4Handler();
 		video.finishCallback = function()
 		{
 			LoadingState.loadAndSwitchState(new PlayState());
 		}
-		video.playVideo(Paths.video(name));
+		video.playVideo(Paths.video(name));*/
 	}
 
 	var previousFrameTime:Int = 0;
