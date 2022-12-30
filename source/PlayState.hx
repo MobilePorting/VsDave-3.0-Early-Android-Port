@@ -337,6 +337,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'exploitation':
+                                #if windows
 				var programPath:String = Sys.programPath();
 				var textPath = programPath.substr(0, programPath.length - CoolSystemStuff.executableFileName().length) + "help me.txt";
 	
@@ -344,6 +345,7 @@ class PlayState extends MusicBeatState
 				{
 					FileSystem.deleteFile(textPath);
 				}
+                                #end
 				Main.toggleFuckedFPS(true);
 				modchart = ExploitationModchartType.None;
 			case 'recursed':
@@ -930,7 +932,7 @@ class PlayState extends MusicBeatState
 			case 'cheating':
 				credits = 'Notes are scrambled! FUCK you!';
 			case 'exploitation':
-				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "!";
+				#if windows credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "!"; #else credits = "You won't survive!" #end
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			case 'electric-cockaldoodledoo':
