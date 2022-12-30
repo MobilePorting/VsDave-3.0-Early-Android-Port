@@ -35,11 +35,13 @@ class OutdatedSubState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (controls.PAUSE && FlxG.save.data.begin_thing == true)
+                for (touch in FlxG.touches.list)
+		if (touch.justPressed || controls.PAUSE && FlxG.save.data.begin_thing == true)
 		{
 			leaveState();
 		}
-		if (FlxG.keys.justPressed.Y && FlxG.save.data.begin_thing != true || FlxG.keys.justPressed.ENTER && FlxG.save.data.begin_thing != true)
+                for (touch in FlxG.touches.list)
+		if (touch.justPressed || FlxG.keys.justPressed.Y && FlxG.save.data.begin_thing != true || FlxG.keys.justPressed.ENTER && FlxG.save.data.begin_thing != true)
 		{
 			FlxG.save.data.begin_thing = true;
 			FlxG.save.data.eyesores = true;
