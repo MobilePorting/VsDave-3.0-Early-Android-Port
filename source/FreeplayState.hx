@@ -100,6 +100,9 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
+                Paths.clearUnusedMemory();
+                Paths.clearStoredMemory();
+
 		#if desktop DiscordClient.changePresence("In the Freeplay Menu", null); #end
 		
 		Catagories = Assets.getText(Paths.data("packs/PackList.txt")).split(":");
