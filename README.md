@@ -1,5 +1,6 @@
 ## Credits Android Port
 * [mcagabe19](https://github.com/mcagabe19)(me) : Porter
+* [Sirox](https://github.com/sirox228) : Fixing Some Stuff
 * [kamodrip](https://github.com/Akhia11) : Play Tester (mcsupersus you have slow internet on school)
 
 
