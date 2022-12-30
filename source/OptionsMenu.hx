@@ -42,7 +42,6 @@ class OptionsMenu extends MusicBeatState
 		#end
 		var menuBG:FlxSprite = new FlxSprite();
 		
-		
 		languages = LanguageManager.getLanguages();
 
 		controlsStrings = CoolUtil.coolStringFile( 
@@ -83,12 +82,32 @@ class OptionsMenu extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
+                #if mobile
+                addVirtualPad(UP_DOWN, A_B_C);
+                #end
+
+                #if mobile
+                var xd:FlxText = new FlxText(10, 14, 0, 'Press C to customize your android controls', 16);
+                xd.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                xd.borderSize = 2.4;
+                xd.scrollFactor.set();
+                add(xd);
+                #end
+
 		super.create();
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+                #if mobile
+                if (virtualPad.buttonC.justPressed)
+                {
+                removeVirtualPad();
+		openSubState(new mobile.MobileControlsSubState());
+                }
+                #end
 
 		if (controls.BACK)
 			FlxG.switchState(new MainMenuState());
