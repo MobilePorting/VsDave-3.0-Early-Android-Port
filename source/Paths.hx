@@ -1,16 +1,121 @@
 package;
 
 import flixel.FlxG;
+import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
+import openfl.media.Sound;
+import openfl.utils.Assets;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
-#if sys import sys.FileSystem; #end
+import openfl.display.BitmapData;
+import openfl.Lib;
+import openfl.display3D.textures.Texture;
+import openfl.system.System;
 
 class Paths
 {
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 
 	static var currentLevel:String;
+
+        public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+        public static var currentTrackedTextures:Map<String, Texture> = [];
+	public static var currentTrackedSounds:Map<String, Sound> = [];
+	public static var localTrackedAssets:Array<String> = [];
+
+        public static function excludeAsset(key:String)
+	{
+		if (!dumpExclusions.contains(key))
+			dumpExclusions.push(key);
+	}
+
+	public static var dumpExclusions:Array<String> = [
+		'assets/music/freakyMenu.$SOUND_EXT',
+		'assets/music/breakfast.$SOUND_EXT',
+                'assets/music/breakfast-ohno.$SOUND_EXT',
+	];
+
+	public static function clearUnusedMemory()
+	{
+		for (key in currentTrackedAssets.keys())
+		{
+			if (!localTrackedAssets.contains(key) && !dumpExclusions.contains(key) && key != null)
+			{
+				var obj = currentTrackedAssets.get(key);
+				@:privateAccess
+				if (obj != null)
+				{
+                                        var isTexture:Bool = currentTrackedTextures.exists(key);
+					if (isTexture)
+					{
+						var texture = currentTrackedTextures.get(key);
+						texture.dispose();
+						texture = null;
+						currentTrackedTextures.remove(key);
+					}
+					Assets.cache.removeBitmapData(key);
+					Assets.cache.clearBitmapData(key);
+					Assets.cache.clear(key);
+					FlxG.bitmap._cache.remove(key);
+					obj.destroy();
+					currentTrackedAssets.remove(key);
+				}
+			}
+		}
+
+		for (key in currentTrackedSounds.keys())
+		{
+			if (!localTrackedAssets.contains(key) && !dumpExclusions.contains(key) && key != null)
+			{
+				var obj = currentTrackedSounds.get(key);
+				if (obj != null)
+				{
+					Assets.cache.removeSound(key);
+					Assets.cache.clearSounds(key);
+					Assets.cache.clear(key);
+					currentTrackedSounds.remove(key);
+				}
+			}
+		}
+                System.gc();
+                #if cpp
+		cpp.NativeGc.run(true);
+		#end
+	}
+
+	public static function clearStoredMemory()
+	{
+		@:privateAccess
+		for (key in FlxG.bitmap._cache.keys())
+		{
+			var obj = FlxG.bitmap._cache.get(key);
+			if (obj != null && !currentTrackedAssets.exists(key))
+			{
+				Assets.cache.removeBitmapData(key);
+				Assets.cache.clearBitmapData(key);
+				Assets.cache.clear(key);
+				FlxG.bitmap._cache.remove(key);
+				obj.destroy();
+			}
+		}
+
+		@:privateAccess
+		for (key in Assets.cache.getSoundKeys())
+		{
+			if (key != null && !currentTrackedSounds.exists(key))
+			{
+				var obj = Assets.cache.getSound(key);
+				if (obj != null)
+				{
+					Assets.cache.removeSound(key);
+					Assets.cache.clearSounds(key);
+					Assets.cache.clear(key);
+				}
+			}
+		}
+
+		localTrackedAssets = [];
+	}
 
 	static public function isLocale():Bool
 	{
@@ -70,7 +175,7 @@ class Paths
 		if (isLocale())
 		{
 			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/' + file, type, library);
-			if (FileSystem.exists(langaugeReturnPath))
+			if (OpenFlAssets.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;
 			}
@@ -91,7 +196,7 @@ class Paths
 		if (isLocale())
 		{
 			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/data/$key.txt', TEXT, library);
-			if (FileSystem.exists(langaugeReturnPath))
+			if (OpenFlAssets.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;
 			}
@@ -163,7 +268,7 @@ class Paths
 		if (isLocale())
 		{
 			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/images/$key.$ext', IMAGE, library);
-			if (FileSystem.exists(langaugeReturnPath))
+			if (OpenFlAssets.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;
 			}
@@ -209,6 +314,46 @@ class Paths
 	inline static public function video(key:String, ?library:String)
 	{
 		return getPath('videos/$key.mp4', BINARY, library);
+	}
+
+        public static function returnGraphic(key:String, ?cache:Bool = true):FlxGraphic
+	{
+		var path:String = 'assets/$key.png';
+		if (OpenFlAssets.exists(path, IMAGE))
+		{
+			if (!currentTrackedAssets.exists(path))
+			{
+				var newGraphic:FlxGraphic = null;
+				var bitmap:BitmapData = OpenFlAssets.getBitmapData(path);
+
+				newGraphic = FlxGraphic.fromBitmapData(bitmap, false, path);
+
+				newGraphic.persist = true;
+				currentTrackedAssets.set(path, newGraphic);
+			}
+
+			localTrackedAssets.push(path);
+			return currentTrackedAssets.get(path);
+		}
+
+		trace('$key image is null');
+		return null;
+	}
+
+	public static function returnSound(key:String, ?cache:Bool = true):Sound
+	{
+		if (Assets.exists('assets/$key.$SOUND_EXT', SOUND))
+		{
+			var path:String = 'assets/$key.$SOUND_EXT';
+			if (!currentTrackedSounds.exists(path))
+				currentTrackedSounds.set(path, Assets.getSound(path, cache));
+
+			localTrackedAssets.push(path);
+			return currentTrackedSounds.get(path);
+		}
+
+		trace('$key sound is null');
+		return null;
 	}
 
 }
