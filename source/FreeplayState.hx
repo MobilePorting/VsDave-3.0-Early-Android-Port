@@ -783,6 +783,14 @@ class FreeplayState extends MusicBeatState
 			});
 		});
 	}
+
+        public static function destroyFreeplayVocals() {
+		if(vocals != null) {
+			vocals.stop();
+			vocals.destroy();
+		}
+		vocals = null;
+	}
 }
 
 class SongMetadata
