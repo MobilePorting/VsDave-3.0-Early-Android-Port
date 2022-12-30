@@ -87,6 +87,9 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
+                Paths.clearUnusedMemory();
+                Paths.clearStoredMemory();
+
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 
 		#if desktop
