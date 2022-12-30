@@ -344,6 +344,8 @@ class CreditsMenuState extends MusicBeatState
 
 	override function create()
 	{
+        Paths.clearUnusedMemory();
+        Paths.clearStoredMemory();
       #if desktop
       DiscordClient.changePresence("In the Credits Menu", null);
       #end
