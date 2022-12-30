@@ -28,8 +28,8 @@ class BambiEnemy extends FlxSprite
 		var graphic = Paths.image("bambiCornGame/bambi", 'shared');
 		loadGraphic(graphic, true, 32, 32);
 		setGraphicSize(64, 64);
-		setFacingFlip(LEFT, false, false);
-		setFacingFlip(RIGHT, true, false);
+		//setFacingFlip(LEFT, false, false);
+		//setFacingFlip(RIGHT, true, false);
 		animation.add("d", [0, 1, 0, 2], 6, false);
 		animation.add("lr", [3, 4, 3, 5], 6, false);
 		animation.add("u", [6, 7, 6, 8], 6, false);
