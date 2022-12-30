@@ -322,6 +322,9 @@ class PlayState extends MusicBeatState
 	
 	override public function create()
 	{
+                Paths.clearUnusedMemory();
+                Paths.clearStoredMemory();
+
 		instance = this;	
 
 		if ((SONG.song.toLowerCase() == "greetings" || SONG.song.toLowerCase() == "adventure") && characteroverride.toLowerCase() == "tristan")
