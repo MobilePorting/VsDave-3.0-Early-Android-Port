@@ -1,6 +1,6 @@
 ## Credits Android Port
 * [mcagabe19](https://github.com/mcagabe19)(me) : Porter
-* [kamodrip](https://github.com/Akhia11) : Play Tester
+* [kamodrip](https://github.com/Akhia11) : Play Tester (mcsupersus you have slow internet on school)
 
 
 ## Powered by a heavily modified version of Kade Engine known as Dave Engine!
