@@ -28,6 +28,8 @@ class ChangeLanguageState extends MusicBeatState
 
    override function create()
 	{
+           Paths.clearUnusedMemory();
+           Paths.clearStoredMemory();
 	   languages = LanguageManager.getLanguages();
       add(languageTextGroup);
 
