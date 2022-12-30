@@ -1786,9 +1786,11 @@ class PlayState extends MusicBeatState
 			blackScreen.scrollFactor.set();
 			blackScreen.alpha = 0;
 			add(blackScreen);
-				
+
+			#if windows
 			Application.current.window.title = "EXPUNGED'S REIGN IS HERE, FUCK YOU";
 			Application.current.window.setIcon(lime.graphics.Image.fromFile("art/iconAAAA.png"));
+                        #end
 		}
 
 		startingSong = false;
@@ -3007,7 +3009,7 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'exploitation')
 		{
-			Application.current.window.title = Main.applicationName;
+			#if windows Application.current.window.title = Main.applicationName; #end
 			Main.toggleFuckedFPS(false);
 		}
 		if (isStoryMode)
