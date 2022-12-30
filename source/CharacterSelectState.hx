@@ -132,7 +132,7 @@ class CharacterSelectState extends MusicBeatState
 
 		super.create();
 
-		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
+                if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			if (FlxG.fullscreen)
 			{
@@ -271,7 +271,10 @@ class CharacterSelectState extends MusicBeatState
 		arrowRight.scrollFactor.set();
 		arrows[1] = arrowRight;
 		add(arrowRight);
-		
+
+                #if mobile
+                addVirtualPad(LEFT_FULL, A_B_X_Y);
+                #end
 	}
 
 	private function generateStaticArrows(noteType:String = 'normal', regenerated:Bool):Void
@@ -356,7 +359,7 @@ class CharacterSelectState extends MusicBeatState
 
 		super.update(elapsed);
 
-		if (FlxG.keys.justPressed.ESCAPE)
+		if (#if mobile virtualPad.buttonB.justPressed || #end FlxG.keys.justPressed.ESCAPE)
 		{
 			if (wasInFullscreen)
 			{
@@ -365,7 +368,7 @@ class CharacterSelectState extends MusicBeatState
 			LoadingState.loadAndSwitchState(new FreeplayState());
 		}
 
-		if (FlxG.keys.justPressed.SEVEN)
+		if (#if mobile virtualPad.buttonY.justPressed || #end FlxG.keys.justPressed.SEVEN)
 			{
 				for (character in characters)
 				{
@@ -413,7 +416,7 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.sound.play(Paths.music('gameOverEnd'));
 			new FlxTimer().start(1.9, endIt);
 		}
-		if (FlxG.keys.justPressed.LEFT && !selectedCharacter)
+		if (#if mobile virtualPad.buttonLeft.justPressed || #end FlxG.keys.justPressed.LEFT && !selectedCharacter)
 		{
 			curForm = 0;
 			current--;
@@ -426,7 +429,7 @@ class CharacterSelectState extends MusicBeatState
 			arrows[0].loadGraphic(Paths.image("ui/ArrowLeft_Pressed", "preload"));
 		}
 
-		if (FlxG.keys.justPressed.RIGHT && !selectedCharacter)
+		if (#if mobile virtualPad.buttonRight.justPressed || #end FlxG.keys.justPressed.RIGHT && !selectedCharacter)
 		{
 			curForm = 0;
 			current++;
@@ -444,7 +447,7 @@ class CharacterSelectState extends MusicBeatState
 		if (FlxG.keys.justReleased.RIGHT)
 			arrows[1].loadGraphic(Paths.image("ui/ArrowRight_Idle", "preload"));
 
-		if (FlxG.keys.justPressed.DOWN && !selectedCharacter)
+		if (#if mobile virtualPad.buttonDown.justPressed || #end FlxG.keys.justPressed.DOWN && !selectedCharacter)
 		{
 			curForm--;
 			if (curForm < 0)
@@ -454,7 +457,7 @@ class CharacterSelectState extends MusicBeatState
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
-		if (FlxG.keys.justPressed.UP && !selectedCharacter)
+		if (#if mobile virtualPad.buttonUp.justPressed || #end FlxG.keys.justPressed.UP && !selectedCharacter)
 		{
 			curForm++;
 			if (curForm > characters[current].forms.length - 1)
@@ -464,7 +467,7 @@ class CharacterSelectState extends MusicBeatState
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
-		if (FlxG.keys.justPressed.R && !selectedCharacter)
+		if (#if mobile virtualPad.buttonX.justPressed || #end FlxG.keys.justPressed.R && !selectedCharacter)
 		{
 			reset();
 			FlxG.resetState();
