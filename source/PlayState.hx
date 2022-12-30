@@ -1102,6 +1102,10 @@ class PlayState extends MusicBeatState
 		subtitleManager = new SubtitleManager();
 		subtitleManager.cameras = [camHUD];
 
+                #if mobile
+                addMobileControls();
+                #end
+
 		super.create();
 	}
 	
@@ -1566,6 +1570,10 @@ class PlayState extends MusicBeatState
 	}
 	function startCountdown():Void
 	{
+                #if mobile
+                mobileControls.visible = true;
+                #end
+
 		inCutscene = false;
 
 		generateStaticArrows(0);
@@ -2938,6 +2946,10 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
+                #if mobile
+                mobileControls.visible = false;
+                #end
+
 		inCutscene = false;
 		canPause = false;
 		FlxG.sound.music.volume = 0;
