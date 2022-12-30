@@ -2,9 +2,6 @@ package;
 
 import flixel.system.FlxAssets.FlxShader;
 
-
-
-
 class GlitchEffect
 {
     public var shader(default,null):GlitchShader = new GlitchShader();
@@ -318,11 +315,11 @@ class PulseShader extends FlxShader
         if (uampmul > 0.0)
         {
             float offsetX = sin(pt.y * uFrequency + uTime * uSpeed);
-            float offsetY = sin(pt.x * (uFrequency * 2) - (uTime / 2) * uSpeed);
-            float offsetZ = sin(pt.z * (uFrequency / 2) + (uTime / 3) * uSpeed);
-            pt.x = mix(pt.x,sin(pt.x / 2 * pt.y + (5 * offsetX) * pt.z),uWaveAmplitude * uampmul);
-            pt.y = mix(pt.y,sin(pt.y / 3 * pt.z + (2 * offsetZ) - pt.x),uWaveAmplitude * uampmul);
-            pt.z = mix(pt.z,sin(pt.z / 6 * (pt.x * offsetY) - (50 * offsetZ) * (pt.z * offsetX)),uWaveAmplitude * uampmul);
+            float offsetY = sin(pt.x * (uFrequency * 2.) - (uTime / 2.) * uSpeed);
+            float offsetZ = sin(pt.z * (uFrequency / 2.) + (uTime / 3.) * uSpeed);
+            pt.x = mix(pt.x,sin(pt.x / 2. * pt.y + (5. * offsetX) * pt.z),uWaveAmplitude * uampmul);
+            pt.y = mix(pt.y,sin(pt.y / 3. * pt.z + (2. * offsetZ) - pt.x),uWaveAmplitude * uampmul);
+            pt.z = mix(pt.z,sin(pt.z / 6. * (pt.x * offsetY) - (50. * offsetZ) * (pt.z * offsetX)),uWaveAmplitude * uampmul);
         }
 
 
