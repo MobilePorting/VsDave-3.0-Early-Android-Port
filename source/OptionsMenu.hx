@@ -34,6 +34,9 @@ class OptionsMenu extends MusicBeatState
 	var curLanguage:String = LanguageManager.save.data.language;
 	override function create()
 	{
+                Paths.clearUnusedMemory();
+                Paths.clearStoredMemory();
+
 		#if desktop
 		DiscordClient.changePresence("In the Options Menu", null);
 		#end
