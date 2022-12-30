@@ -48,7 +48,11 @@ class TitleState extends MusicBeatState
 	var awaitingExploitation:Bool;
 
 	override public function create():Void
-	{		
+	{
+                #if android
+                FlxG.android.preventDefaultKeys = [BACK];
+                #end
+
 		fun = FlxG.random.int(0, 999);
 		if(fun == 1)
 		{
