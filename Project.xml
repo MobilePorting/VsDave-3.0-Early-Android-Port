@@ -76,6 +76,7 @@
 	<haxelib name="faxe" if='switch'/>
 	<haxelib name="polymod"/>
         <haxelib name="extension-androidtools" if="android" />
+        <haxelib name="extension-videoview" if="android" />
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
