@@ -1,3 +1,7 @@
+## Credits Android Port
+* [mcagabe19](https://github.com/mcagabe19)(me) : Porter
+* [kamodrip](https://github.com/Akhia11) : Play Tester
+
 
 ## Powered by a heavily modified version of Kade Engine known as Dave Engine!
 ![Kade Engine Logo](https://github.com/KadeDev/Kade-Engine/blob/stable/assets/preload/images/KadeEngineLogo.png)
