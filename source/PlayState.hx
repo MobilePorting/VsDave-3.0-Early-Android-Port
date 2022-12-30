@@ -1056,6 +1056,10 @@ class PlayState extends MusicBeatState
 		scoreTxt.cameras = [camHUD];
 		kadeEngineWatermark.cameras = [camHUD];
 		doof.cameras = [camDialogue];
+
+                #if mobile
+                addMobileControls();
+                #end
 		
 		if (SONG.song.toLowerCase() == 'kabunga')
 		{
@@ -1106,10 +1110,6 @@ class PlayState extends MusicBeatState
 		
 		subtitleManager = new SubtitleManager();
 		subtitleManager.cameras = [camHUD];
-
-                #if mobile
-                addMobileControls();
-                #end
 
 		super.create();
 	}
