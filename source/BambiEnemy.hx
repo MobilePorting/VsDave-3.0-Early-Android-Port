@@ -64,7 +64,7 @@ class BambiEnemy extends FlxSprite
 
 	function move()
 	{
-		if ((velocity.x != 0 || velocity.y != 0) && touching == NONE)
+		if ((velocity.x != 0 || velocity.y != 0))
 		{
 			if (Math.abs(velocity.x) > Math.abs(velocity.y))
 			{
@@ -96,7 +96,7 @@ class BambiEnemy extends FlxSprite
 			}
 		}
 
-		if ((velocity.x != 0 || velocity.y != 0) && touching == NONE)
+		if ((velocity.x != 0 || velocity.y != 0))
 		{
 			stepSound.setPosition(x + frameWidth / 2, y + height);
 			stepSound.play();
