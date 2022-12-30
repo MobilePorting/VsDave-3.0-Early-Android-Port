@@ -69,16 +69,16 @@ class BambiEnemy extends FlxSprite
 			if (Math.abs(velocity.x) > Math.abs(velocity.y))
 			{
 				if (velocity.x < 0)
-					facing = LEFT;
+					//facing = LEFT;
 				else
-					facing = RIGHT;
+					//facing = RIGHT;
 			}
 			else
 			{
 				if (velocity.y < 0)
-					facing = UP;
+					//facing = UP;
 				else
-					facing = DOWN;
+					//facing = DOWN;
 			}
 	
 			switch (facing)
