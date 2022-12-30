@@ -102,6 +102,9 @@ class ChartingState extends MusicBeatState
 
 	override function create()
 	{
+                Paths.clearUnusedMemory();
+                Paths.clearStoredMemory();
+
 		curSection = lastSection;
 
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(MainMenuState.randomizeBG());
