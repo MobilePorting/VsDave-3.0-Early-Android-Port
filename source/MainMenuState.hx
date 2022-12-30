@@ -262,7 +262,9 @@ class MainMenuState extends MusicBeatState
 			FlxTween.tween(goToFreeplay, {alpha: 1}, 1);
 		}
 
-		// NG.core.calls.event.logEvent('swag').send();
+		#if mobile
+                addVirtualPad(UP_DOWN, A_B);
+                #end
 
 		super.create();
 	}
