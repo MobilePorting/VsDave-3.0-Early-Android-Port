@@ -67,6 +67,9 @@ class TerminalState extends FlxState
 
     override public function create():Void 
     {
+        Paths.clearUnusedMemory();
+        Paths.clearStoredMemory();
+
         FlxG.sound.music.volume = 0.01;
 
         displayText = new FlxText(0, 0, FlxG.width, ">", 19);
