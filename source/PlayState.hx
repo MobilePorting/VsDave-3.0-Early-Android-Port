@@ -69,6 +69,9 @@ import flixel.addons.effects.chainable.IFlxEffect;
 #if desktop
 import Discord.DiscordClient;
 #end
+#if android
+import extension.videoview.VideoView;
+#end
 
 #if windows
 import sys.io.File;
@@ -792,6 +795,17 @@ class PlayState extends MusicBeatState
 		add(dad);
 		add(dadmirror);
 		add(boyfriend);
+
+                #if android
+                if (isStoryMode || FlxG.save.data.freeplayCuts) {
+                switch (SONG.song.toLowerCase())
+		{
+                        case 'house':
+		                VideoView.playVideo(SUtil.getStorageDirectory() + 'videos/daveCutscene.mp4');
+                        case 'maze':
+		                VideoView.playVideo(SUtil.getStorageDirectory() + 'videos/mazeCutscene.mp4');
+                }}
+                #end
 
 		switch (stageCheck)
 		{
