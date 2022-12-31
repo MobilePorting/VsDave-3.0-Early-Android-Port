@@ -9,10 +9,10 @@ class MinigamePlayer extends FlxSprite
 {
     static inline var speed:Float = 220;
 
-    var up:Bool = false;
-    var down:Bool = false;
-    var left:Bool = false;
-    var right:Bool = false;
+    public static var up:Bool = false;
+    public static var down:Bool = false;
+    public static var left:Bool = false;
+    public static var right:Bool = false;
 
     public var lockMovement:Bool = false;
 
@@ -36,11 +36,6 @@ class MinigamePlayer extends FlxSprite
 
     function updateMovement()
     {
-        up = #if mobile _virtualpad.buttonUp.justPressed || #end FlxG.keys.anyPressed([UP, W]);
-        down = #if mobile _virtualpad.buttonDown.justPressed || #end FlxG.keys.anyPressed([DOWN, S]);
-        left = #if mobile _virtualpad.buttonLeft.justPressed || #end FlxG.keys.anyPressed([LEFT, A]);
-        right = #if mobile _virtualpad.buttonRight.justPressed || #end FlxG.keys.anyPressed([RIGHT, D]);
-
         if (up && down)
             up = down = false;
         if (left && right)
