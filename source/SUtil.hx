@@ -38,12 +38,13 @@ enum StorageType
  */
 class SUtil
 {
-        /*// Video Files xdxdxd
+        #if android
+        // Video Files xdxdxd
         public static final videoFiles:Array<String> = [
 		"daveCutscene",
 		"mazeCutscene"
-	];*/
-
+	];
+        #end
 	/**
 	 * This returns the external storage path that the game will use by the type.
 	 */
@@ -99,10 +100,12 @@ class SUtil
 		
                 if (!sys.FileSystem.exists(SUtil.getStorageDirectory()))
 			sys.FileSystem.createDirectory(SUtil.getStorageDirectory());
+                #end
 
-                /*for (vid in videoFiles)
-			SUtil.copyContent(Paths.video(vid), SUtil.getStorageDirectory() + '/videos' + vid + '.mp4');
-		}*/
+                #if android
+                for (vid in videoFiles)
+			copyContent(Paths.video(vid), SUtil.getStorageDirectory() + Paths.video(vid));
+		}
                 #end
 	}
 
