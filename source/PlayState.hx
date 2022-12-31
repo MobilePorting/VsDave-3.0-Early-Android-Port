@@ -2431,7 +2431,7 @@ class PlayState extends MusicBeatState
 				misses + " | " + LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "% ";
 		}
 
-		if (FlxG.keys.justPressed.ENTER #if android FlxG.android.justReleased.BACK || #end && startedCountdown && canPause)
+		if (FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK || #end && startedCountdown && canPause)
 		{
 			persistentUpdate = false;	
 			persistentDraw = true;
