@@ -4,9 +4,12 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
+import mobile
 
 class MinigamePlayer extends FlxSprite
 {
+    var virtualPad:FlxVirtualPad;
+
     static inline var speed:Float = 220;
 
     var up:Bool = false;
