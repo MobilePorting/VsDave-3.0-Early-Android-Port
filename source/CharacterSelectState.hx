@@ -274,6 +274,7 @@ class CharacterSelectState extends MusicBeatState
 
                 #if mobile
                 addVirtualPad(LEFT_FULL, A_B_X_Y);
+                addVirtualPadCamera();
                 #end
 	}
 
@@ -375,7 +376,7 @@ class CharacterSelectState extends MusicBeatState
 					unlockCharacter(character.name); //unlock everyone
 				}
 			}
-		
+
 		for (i in 0...controlSet.length)
 		{
 			if (controlSet[i] && !PressedTheFunny)
