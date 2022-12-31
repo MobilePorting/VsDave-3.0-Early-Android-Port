@@ -87,6 +87,10 @@ class BambisCornGame extends MusicBeatState
             corns.push(corn);
         }
 
+        #if mobile
+        addVirtualPad(LEFT_FULL, A_B);
+        #end
+
         super.create();
         
         createMap();
@@ -125,7 +129,7 @@ class BambisCornGame extends MusicBeatState
         inIntro = true;
         FlxG.sound.playMusic(Paths.music('cornIntro', 'shared'));
 
-        introText = new FlxText(0, 0, FlxG.width, texts[0] + "\n\n\n\n\nCONTINUE - ENTER",32);
+        introText = new FlxText(0, 0, FlxG.width, texts[0] + "\n\n\n\n\nCONTINUE - A",32);
 		introText.setFormat(Paths.font("pixel.otf"), 32, FlxColor.WHITE, CENTER);
 		introText.screenCenter();
 		introText.antialiasing = true;
@@ -150,7 +154,7 @@ class BambisCornGame extends MusicBeatState
         }
         
 
-        if (FlxG.keys.justPressed.SPACE)
+        if (FlxG.keys.justPressed.SPACE #if mobile || virtualpad.buttonA.justPressed #end)
         {
             for (corn in corns)
             {
@@ -178,11 +182,11 @@ class BambisCornGame extends MusicBeatState
 
         if (dead)
         {
-            if (FlxG.keys.justPressed.ENTER) FlxG.switchState(new BambisCornGame()); // PLEASE SHUT UP IM TIRED AND LAZY
-            else if (FlxG.keys.justPressed.ESCAPE) FlxG.switchState(new ExtrasMenuState());
+            if (FlxG.keys.justPressed.ENTER #if mobile || virtualpad.buttonA.justPressed #end) FlxG.switchState(new BambisCornGame()); // PLEASE SHUT UP IM TIRED AND LAZY
+            else if (FlxG.keys.justPressed.ESCAPE #if mobile || virtualpad.buttonB.justPressed #end) FlxG.switchState(new ExtrasMenuState());
         }
 
-        if (FlxG.keys.justPressed.ENTER && inIntro)
+        if (FlxG.keys.justPressed.ENTER #if mobile || virtualpad.buttonA.justPressed #end && inIntro)
         {
             // Once the intro is complete
             if (curText == texts.length - 1)
@@ -222,7 +226,7 @@ class BambisCornGame extends MusicBeatState
             else
             {
                 curText++;
-                introText.text = texts[curText] + "\n\n\n\n\nCONTINUE - ENTER";
+                introText.text = texts[curText] + "\n\n\n\n\nCONTINUE - A";
             }
         }   
 
@@ -241,7 +245,7 @@ class BambisCornGame extends MusicBeatState
         
         FlxG.sound.music.stop();
 
-        var txt:FlxText = new FlxText(0, 0, FlxG.width, "You Lose!\nYou kinda suck ngl bro...\n\n\nENTER - Try Again\nESCAPE - Back to Menu",32);
+        var txt:FlxText = new FlxText(0, 0, FlxG.width, "You Lose!\nYou kinda suck ngl bro...\n\n\nA - Try Again\nB - Back to Menu",32);
 		txt.setFormat(Paths.font("pixel.otf"), 32, FlxColor.WHITE, CENTER);
 		txt.screenCenter();
 		txt.antialiasing = true;
