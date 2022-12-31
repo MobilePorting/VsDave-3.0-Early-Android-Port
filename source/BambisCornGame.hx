@@ -205,7 +205,7 @@ class BambisCornGame extends MusicBeatState
 
                 remove(introText);
 
-                var tipText:FlxText = new FlxText(0, FlxG.height * 0.9, 0, "Space - Collect Corn", 50);
+                var tipText:FlxText = new FlxText(0, FlxG.height * 0.9, 0, "A - Collect Corn", 50);
                 tipText.setFormat(Paths.font("pixel.otf"), FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                 tipText.scrollFactor.set();
                 tipText.screenCenter(X);
