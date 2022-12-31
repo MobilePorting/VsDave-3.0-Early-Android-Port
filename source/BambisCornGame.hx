@@ -154,7 +154,7 @@ class BambisCornGame extends MusicBeatState
         }
         
 
-        if (FlxG.keys.justPressed.SPACE #if mobile || virtualpad.buttonA.justPressed #end)
+        if (FlxG.keys.justPressed.SPACE #if mobile || virtualPad.buttonA.justPressed #end)
         {
             for (corn in corns)
             {
@@ -182,11 +182,11 @@ class BambisCornGame extends MusicBeatState
 
         if (dead)
         {
-            if (FlxG.keys.justPressed.ENTER #if mobile || virtualpad.buttonA.justPressed #end) FlxG.switchState(new BambisCornGame()); // PLEASE SHUT UP IM TIRED AND LAZY
-            else if (FlxG.keys.justPressed.ESCAPE #if mobile || virtualpad.buttonB.justPressed #end) FlxG.switchState(new ExtrasMenuState());
+            if (FlxG.keys.justPressed.ENTER #if mobile || virtualPad.buttonA.justPressed #end) FlxG.switchState(new BambisCornGame()); // PLEASE SHUT UP IM TIRED AND LAZY
+            else if (FlxG.keys.justPressed.ESCAPE #if mobile || virtualPad.buttonB.justPressed #end) FlxG.switchState(new ExtrasMenuState());
         }
 
-        if (FlxG.keys.justPressed.ENTER #if mobile || virtualpad.buttonA.justPressed #end && inIntro)
+        if (FlxG.keys.justPressed.ENTER #if mobile || virtualPad.buttonA.justPressed #end && inIntro)
         {
             // Once the intro is complete
             if (curText == texts.length - 1)
