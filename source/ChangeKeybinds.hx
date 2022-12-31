@@ -98,6 +98,10 @@ class ChangeKeybinds extends MusicBeatState
 		
 		changeSelection();
 
+                #if ios
+                addVirtualPad(NONE, B);
+                #end
+
 		super.create();
 	}
 
@@ -107,7 +111,7 @@ class ChangeKeybinds extends MusicBeatState
 		var down = controls.DOWN_P;
 		var up = controls.UP_P;
 		var right = controls.RIGHT_P;
-		var back = controls.BACK;
+		var back = controls.BACK #if android || FlxG.android.justReleased.BACK #end;
 		var accept = controls.ACCEPT;
 
 		switch (state)
