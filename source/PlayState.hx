@@ -801,9 +801,9 @@ class PlayState extends MusicBeatState
                 switch (SONG.song.toLowerCase())
 		{
                         case 'house':
-		                VideoView.playVideo(openfl.utils.Assets.exists("assets/videos/daveCutscene.mp4");
+		                VideoView.playVideo(openfl.utils.Assets.exists("assets/videos/daveCutscene.mp4"));
                         case 'maze':
-		                VideoView.playVideo(openfl.utils.Assets.exists("/assets/videos/mazeCutscene.mp4");
+		                VideoView.playVideo(openfl.utils.Assets.exists("/assets/videos/mazeCutscene.mp4"));
                 }}
                 #end
 
