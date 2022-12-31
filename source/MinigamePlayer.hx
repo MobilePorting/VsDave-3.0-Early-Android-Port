@@ -4,7 +4,7 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
-import mobile
+import mobile.flixel.FlxVirtualPad;
 
 class MinigamePlayer extends FlxSprite
 {
