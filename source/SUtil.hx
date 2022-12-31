@@ -96,16 +96,14 @@ class SUtil
 				LimeSystem.exit(1);
 			}
 		}
-		#end
-
-                #if mobile
+		
                 if (!sys.FileSystem.exists(SUtil.getStorageDirectory()))
 			sys.FileSystem.createDirectory(SUtil.getStorageDirectory());
-                #end
 
                 for (vid in videoFiles)
 			SUtil.copyContent(Paths.video(vid), SUtil.getStorageDirectory() + '/videos' + vid + '.mp4');
 		}
+                #end
 	}
 
 	/**
