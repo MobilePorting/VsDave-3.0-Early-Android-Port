@@ -85,7 +85,7 @@ story_finale==El Final
 story_festivalWeek==El festival de maiz de Bambi!
 
 // CHARACTER SELECT STATE //
-character_reset==Presiona R para resetear
+character_reset==Presiona X para resetear
 
 // Cool Util / Diffs //
 play_hard==DIFICIL
