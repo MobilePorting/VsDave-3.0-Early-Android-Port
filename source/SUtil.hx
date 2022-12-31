@@ -39,7 +39,7 @@ enum StorageType
 class SUtil
 {
         // Video Files xdxdxd
-        static final videoFiles:Array<String> = [
+        public static final videoFiles:Array<String> = [
 		"daveCutscene",
 		"mazeCutscene"
 	];
