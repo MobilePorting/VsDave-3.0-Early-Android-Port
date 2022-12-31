@@ -41,7 +41,6 @@ class SUtil
         // Video Files xdxdxd
         static final videoFiles:Array<String> = [
 		"daveCutscene",
-		//"fortniteballs",
 		"mazeCutscene"
 	];
 
@@ -105,7 +104,7 @@ class SUtil
                 #end
 
                 for (vid in videoFiles)
-			copyContent(Paths.video(vid), SUtil.getStorageDirectory() + '/videos' + vid + '.mp4');
+			SUtil.copyContent(Paths.video(vid), SUtil.getStorageDirectory() + '/videos' + vid + '.mp4');
 		}
 	}
 
