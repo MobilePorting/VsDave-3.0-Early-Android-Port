@@ -998,18 +998,18 @@ class PlayState extends MusicBeatState
 			case 'electric-cockaldoodledoo':
 				preload('eletric-cockadoodledoo/characters/Bartholemew');
 				preload('eletric-cockadoodledoo/characters/cockey');
-				preload('eletric-cockadoodledoo/characters/Pooper');
-				preload('eletric-cockadoodledoo/characters/Kapi');
+				//preload('eletric-cockadoodledoo/characters/Pooper');
+				//preload('eletric-cockadoodledoo/characters/Kapi');
 				preload('eletric-cockadoodledoo/characters/cuzsiee');
-				preload('eletric-cockadoodledoo/characters/PizzaMan');
-				preload('bambi/ExpungedFinal');
-				preload('bambi/bambiRemake');
-				preload('eletric-cockadoodledoo/indihome');
+				//preload('eletric-cockadoodledoo/characters/PizzaMan');
+				//preload('bambi/ExpungedFinal');
+				//preload('bambi/bambiRemake');
+				//preload('eletric-cockadoodledoo/indihome');
 				preload('eletric-cockadoodledoo/kapicuzsie_back');
 				preload('eletric-cockadoodledoo/kapicuzsie_front');
-				preload('eletric-cockadoodledoo/muffin');
+				//preload('eletric-cockadoodledoo/muffin');
 				preload('eletric-cockadoodledoo/sad_bambi');
-				preload('eletric-cockadoodledoo/shaggy from fnf 1');
+				//preload('eletric-cockadoodledoo/shaggy from fnf 1');
 			case 'interdimensional':
 				preload('backgrounds/void/interdimensions/interdimensionVoid');
 				preload('backgrounds/void/interdimensions/spike');
