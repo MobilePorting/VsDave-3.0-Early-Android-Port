@@ -83,4 +83,9 @@ class Main extends Sprite
 		fps.defaultTextFormat = fpsFormat;
 		addChild(fps);
 	}
+
+        public function getFPS():Float
+	{
+		return fpsCounter.currentFPS;
+	}
 }
