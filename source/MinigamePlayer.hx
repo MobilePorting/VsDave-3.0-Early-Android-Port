@@ -36,10 +36,10 @@ class MinigamePlayer extends FlxSprite
 
     function updateMovement()
     {
-        up = FlxG.keys.anyPressed([UP, W]) #if mobile || virtualpad.buttonUp.justPressed; #end
-        down = FlxG.keys.anyPressed([DOWN, S]) #if mobile || virtualpad.buttonDown.justPressed; #end
-        left = FlxG.keys.anyPressed([LEFT, A]) #if mobile || virtualpad.buttonLeft.justPressed; #end
-        right = FlxG.keys.anyPressed([RIGHT, D]) #if mobile || virtualpad.buttonRight.justPressed; #end
+        up = FlxG.keys.anyPressed([UP, W]) #if mobile || virtualPad.buttonUp.justPressed; #end
+        down = FlxG.keys.anyPressed([DOWN, S]) #if mobile || virtualPad.buttonDown.justPressed; #end
+        left = FlxG.keys.anyPressed([LEFT, A]) #if mobile || virtualPad.buttonLeft.justPressed; #end
+        right = FlxG.keys.anyPressed([RIGHT, D]) #if mobile || virtualPad.buttonRight.justPressed; #end
 
         if (up && down)
             up = down = false;
