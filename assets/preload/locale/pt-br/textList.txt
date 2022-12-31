@@ -85,7 +85,7 @@ story_finale==O Final
 story_festivalWeek==O Festival de Milho do Bambi!
 
 // CHARACTER SELECT STATE //
-character_reset==Pressione R para Reiniciar
+character_reset==Pressione X para Reiniciar
 
 // Cool Util / Diffs //
 play_hard==Difícil
