@@ -5,7 +5,7 @@
 
 
 ## Powered by a heavily modified version of Kade Engine known as Dave Engine!
-![Kade Engine Logo](https://github.com/KadeDev/Kade-Engine/blob/stable/assets/preload/images/KadeEngineLogo.png)
+![Kade Engine Logo](https://github.com/mcagabe19/VsDave-3.0-Early-Android-Port/blob/main/KadeEngineLogo.png)
 
 ## Dave
 this is dave
