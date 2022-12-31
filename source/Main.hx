@@ -86,6 +86,6 @@ class Main extends Sprite
 
         public function getFPS():Float
 	{
-		return fpsCounter.currentFPS;
+		return fps.currentFPS;
 	}
 }
