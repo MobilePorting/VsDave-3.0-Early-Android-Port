@@ -60,7 +60,11 @@ class ChangeLanguageState extends MusicBeatState
          languageTextGroup.add(text);
 
          changeTextState(text, i == currentLanguage ? true : false);
-      }
+        }
+
+                #if mobile
+                addVirtualPad(UP_DOWN, A_B);
+                #end
 
 		super.create();
 	}
