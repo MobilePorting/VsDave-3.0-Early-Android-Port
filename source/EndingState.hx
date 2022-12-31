@@ -32,8 +32,9 @@ class EndingState extends MusicBeatState
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
-		
-		if (FlxG.keys.pressed.ENTER)
+
+		for (touch in FlxG.touches.list)
+		if (FlxG.keys.pressed.ENTER #if mobile || touch.justPressed #end)
 		{
 			endIt();
 		}
