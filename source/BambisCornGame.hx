@@ -88,7 +88,7 @@ class BambisCornGame extends MusicBeatState
         }
 
         #if mobile
-        addVirtualPad(LEFT_FULL, A_B);
+        addVirtualPad(LEFT_FULL, A_B_C);
         #end
 
         super.create();
@@ -186,7 +186,7 @@ class BambisCornGame extends MusicBeatState
             else if (FlxG.keys.justPressed.ESCAPE #if mobile || virtualPad.buttonB.justPressed #end) FlxG.switchState(new ExtrasMenuState());
         }
 
-        if (FlxG.keys.justPressed.ENTER #if mobile || virtualPad.buttonA.justPressed #end && inIntro)
+        if (FlxG.keys.justPressed.ENTER #if mobile || virtualPad.buttonC.justPressed #end && inIntro)
         {
             // Once the intro is complete
             if (curText == texts.length - 1)
