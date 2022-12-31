@@ -87,6 +87,11 @@ class BambisCornGame extends MusicBeatState
             corns.push(corn);
         }
 
+        MinigamePlayer.up = #if mobile virtualPad.buttonUp.justPressed || #end FlxG.keys.anyPressed([UP, W]);
+        MinigamePlayer.down = #if mobile virtualPad.buttonDown.justPressed || #end FlxG.keys.anyPressed([DOWN, S]);
+        MinigamePlayer.left = #if mobile virtualPad.buttonLeft.justPressed || #end FlxG.keys.anyPressed([LEFT, A]);
+        MinigamePlayer.right = #if mobile virtualPad.buttonRight.justPressed || #end FlxG.keys.anyPressed([RIGHT, D]);
+
         #if mobile
         addVirtualPad(LEFT_FULL, A_B_C);
         #end
