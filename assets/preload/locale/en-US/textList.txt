@@ -86,7 +86,7 @@ story_finale==The Finale
 story_festivalWeek==Bambi’s Corn Festival!
 
 // CHARACTER SELECT STATE //
-character_reset==Press R To Reset
+character_reset==Press X To Reset
 
 // Cool Util / Diffs //
 play_hard==HARD
