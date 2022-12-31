@@ -27,7 +27,7 @@ class SelectLanguageState extends MusicBeatState
       Paths.clearStoredMemory();
 
       PlayerSettings.init();
-      
+
       FlxG.sound.playMusic(Paths.music('selectLanguageMenu'), 0.7);
       
       FlxG.sound.music.fadeIn(2, 0, 0.7);
@@ -39,18 +39,18 @@ class SelectLanguageState extends MusicBeatState
       bg.color = langaugeList[curLanguageSelected].langaugeColor;
       add(bg);
 
-      selectLanguage = new FlxText(0, (FlxG.height / 2) - 300, 0, "Please Select A Language", 45);
-      selectLanguage.screenCenter(X);
+      selectLanguage = new FlxText(0, (FlxG.height / 2) - 300, FlxG.width, "Please Select A Language", 45);
       selectLanguage.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       selectLanguage.antialiasing = true;
       selectLanguage.borderSize = 2;
+      selectLanguage.screenCenter(X);
       add(selectLanguage);
 
       for (i in 0...langaugeList.length)
       {
          var currentLangauge = langaugeList[i];
 
-         var langaugeText:FlxText = new FlxText(0, (FlxG.height / 2 - 150) + i * 75, 0, currentLangauge.langaugeName, 25);
+         var langaugeText:FlxText = new FlxText(0, (FlxG.height / 2 - 150) + i * 75, FlxG.width, currentLangauge.langaugeName, 25);
          langaugeText.screenCenter(X);
          langaugeText.setFormat("Comic Sans MS Bold", 25, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
          langaugeText.antialiasing = true;
@@ -58,7 +58,7 @@ class SelectLanguageState extends MusicBeatState
 
          var flag:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('languages/' + currentLangauge.langaugeName));
          flag.x = langaugeText.x + langaugeText.width + flag.width / 2;
-         
+
          var yValues = CoolUtil.getMinAndMax(flag.height, langaugeText.height);
          flag.y = langaugeText.y + ((yValues[0] - yValues[1]) / 2);
          add(flag);
@@ -80,11 +80,12 @@ class SelectLanguageState extends MusicBeatState
 
       #if mobile
       addVirtualPad(UP_DOWN, A);
-      addVirtualPadCamera();
       #end
    }
    public override function update(elapsed:Float)
    {
+		super.update(elapsed);
+
       var scrollSpeed:Float = 50;
       bg.x -= scrollSpeed * elapsed;
       bg.y -= scrollSpeed * elapsed;
@@ -100,10 +101,12 @@ class SelectLanguageState extends MusicBeatState
 				LanguageManager.save.data.language = langaugeList[curLanguageSelected].pathName;
             LanguageManager.save.flush();
             LanguageManager.currentLocaleList = CoolUtil.coolTextFile(Paths.file('locale/' + LanguageManager.save.data.language + '/textList.txt', TEXT, 'preload'));
-                        
+
             FlxFlicker.flicker(currentLanguageText, 1.1, 0.07, true, true, function(flick:FlxFlicker)
 				{
 					FlxG.switchState(new TitleState());
+               FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+			      FlxG.sound.music.fadeIn(4, 0, 0.7);
 				});
 			}
 			if (controls.UP_P)
@@ -140,7 +143,7 @@ class SelectLanguageState extends MusicBeatState
    {
       if (selected)
       {
-         text.setFormat("Comic Sans MS Bold", 25, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+         text.setFormat("Comic Sans MS Bold", 25, FlxColor.YELLOW, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       }
       else
       {
