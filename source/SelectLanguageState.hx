@@ -80,6 +80,7 @@ class SelectLanguageState extends MusicBeatState
 
       #if mobile
       addVirtualPad(UP_DOWN, A);
+      addVirtualPadCamera();
       #end
    }
    public override function update(elapsed:Float)
