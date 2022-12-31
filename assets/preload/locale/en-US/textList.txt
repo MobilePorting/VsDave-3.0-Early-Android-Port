@@ -4,7 +4,7 @@
 
 // OUTDATED SUBSTATE //
 introWarningFirstPlay==Hello! This mod utilizes shaders that may be of disturbance to some. If you wish to disable these you can change this in options. Also, Supernovae and Glitch are not meant to be taken seriously and are not composed by me. Supernovae is by ArchWk, and Glitch is by The Boneyard. Touch your screen to continue.
-introWarningSeen==Hello! This mod utilizes shaders that may be of disturbance to some. If you wish to disable these, turn off the Eyesores option in the options menu. Also, Supernovae and Glitch are not meant to be taken seriously and are not composed by me. Supernovae is by ArchWk, and Glitch is by The Boneyard. Touch your screen to continue.
+introWarningSeen==Hello! This mod utilizes shaders that may be of disturbance to some. If you wish to disable these, turn off the Eyesores option in the options menu. Also, Supernovae and Glitch are not meant to be taken seriously and are not composed by me. Supernovae is by ArchWk, and Glitch is by The Boneyard.     Touch your screen to continue.
 
 // Main Menu State //
 Story Mode
