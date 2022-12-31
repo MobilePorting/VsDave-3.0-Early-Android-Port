@@ -315,7 +315,7 @@ class FreeplayState extends MusicBeatState
 				case "unfairness": FlxG.save.data.unfairnessFound;
 				case "kabunga": FlxG.save.data.exbungoFound;
 				case "exploitation": FlxG.save.data.exploitationFound;
-				case "eletric-cockadoodledoo": FlxG.save.data.bananacoreUnlocked;
+				//case "eletric-cockadoodledoo": FlxG.save.data.bananacoreUnlocked;
 				case "recursed": FlxG.save.data.recursedUnlocked;
 				case 'secret-mod-leak': FlxG.save.data.secretModLeakUnlocked;
 				default: true;
