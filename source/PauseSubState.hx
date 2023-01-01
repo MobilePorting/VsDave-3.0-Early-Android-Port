@@ -167,7 +167,7 @@ class PauseSubState extends MusicBeatSubstate
 			case "Developer No Miss":
 				PlayState.devBotplay = !PlayState.devBotplay;
                         case "Charting Menu":
-                        switch (curSong.toLowerCase())
+                        switch (PlayState.curSong.toLowerCase())
 			{
 				case 'supernovae':
 					PlayState.SONG = Song.loadFromJson("cheating", "cheating"); // you dun fucked up
