@@ -11,11 +11,14 @@ class SaveDataHandler
 {
     public static function initSave()
     {
-      if (FlxG.save.data.newInput == null)
+                if (FlxG.save.data.newInput == null)
 			FlxG.save.data.newInput = true;
 		
 		if (FlxG.save.data.downscroll == null)
 			FlxG.save.data.downscroll = false;
+
+                if (FlxG.save.data.middlescroll == null)
+			FlxG.save.data.middlescroll = false;
 
 		if (FlxG.save.data.freeplayCuts == null)
 			FlxG.save.data.freeplayCuts = false;
