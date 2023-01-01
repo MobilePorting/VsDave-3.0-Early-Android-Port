@@ -20,9 +20,9 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	#if debug
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Developer No Miss', 'Exit to menu'];
+	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Charting Menu', 'Developer No Miss', 'Exit to menu'];
 	#else
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Charting Menu', 'Exit to menu'];
 	#end
 	var curSelected:Int = 0;
 
@@ -166,6 +166,20 @@ class PauseSubState extends MusicBeatSubstate
 				FlxG.resetState();
 			case "Developer No Miss":
 				PlayState.devBotplay = !PlayState.devBotplay;
+                        case "Charting Menu":
+                                PlayState.screenshader.shader.uampmul.value[0] = 0;
+				PlayState.screenshader.Enabled = false;
+				PlayState.characteroverride = 'none';
+				PlayState.formoverride = 'none';
+
+                                Application.current.window.title = Main.applicationName;
+
+				if (PlayState.SONG.song.toLowerCase() == "exploitation")
+				{
+					Main.toggleFuckedFPS(false);
+				}
+
+				FlxG.switchState(new ChartingState());
 			case "Exit to menu":
 				PlayState.screenshader.shader.uampmul.value[0] = 0;
 				PlayState.screenshader.Enabled = false;
