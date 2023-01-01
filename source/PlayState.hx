@@ -2043,7 +2043,7 @@ class PlayState extends MusicBeatState
 			babyArrow.x += 78;
 			babyArrow.x += ((FlxG.width / 2) * player);
 
-                        if (FlxG.save.data.middleScroll) {
+                        if (FlxG.save.data.middlescroll && !PlayStateChangeables.Optimize) {
 				babyArrow.x -= 275;
 				if (player != 1) {
 					babyArrow.visible = false;
