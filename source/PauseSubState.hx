@@ -167,19 +167,48 @@ class PauseSubState extends MusicBeatSubstate
 			case "Developer No Miss":
 				PlayState.devBotplay = !PlayState.devBotplay;
                         case "Charting Menu":
-                                PlayState.screenshader.shader.uampmul.value[0] = 0;
-				PlayState.screenshader.Enabled = false;
-				PlayState.characteroverride = 'none';
-				PlayState.formoverride = 'none';
-
-                                Application.current.window.title = Main.applicationName;
-
-				if (PlayState.SONG.song.toLowerCase() == "exploitation")
-				{
-					Main.toggleFuckedFPS(false);
-				}
-
-				FlxG.switchState(new ChartingState());
+                        switch (curSong.toLowerCase())
+			{
+				case 'supernovae':
+					PlayState.SONG = Song.loadFromJson("cheating", "cheating"); // you dun fucked up
+					FlxG.save.data.cheatingFound = true;
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new PlayState());
+					return;
+					// FlxG.switchState(new VideoState('assets/videos/fortnite/fortniteballs.webm', new CrasherState()));
+				case 'cheating':
+					PlayState.SONG = Song.loadFromJson("unfairness", "unfairness"); // you dun fucked up again
+					FlxG.save.data.unfairnessFound = true;
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new PlayState());
+					return;
+				case 'unfairness':
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new TerminalState());
+					#if desktop
+					DiscordClient.changePresence("I have your IP address", null, null, true);
+					#end
+				case 'glitch':
+					PlayState.SONG = Song.loadFromJson("kabunga", "kabunga"); // lol you loser
+					FlxG.save.data.exbungoFound = true;
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new PlayState());
+					return;
+				case 'kabunga':
+					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
+					System.exit(0);
+				default:
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new ChartingState());
+					#if desktop
+					DiscordClient.changePresence("Chart Editor", null, null, true);
+					#end
+			}
 			case "Exit to menu":
 				PlayState.screenshader.shader.uampmul.value[0] = 0;
 				PlayState.screenshader.Enabled = false;
