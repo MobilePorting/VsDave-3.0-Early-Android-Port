@@ -1,3 +1,6 @@
+## IMPORTANT
+If there is issue pls go issues and send for us :) and pull requests is allowed
+
 ## Credits Android Port
 * [mcagabe19](https://github.com/mcagabe19)(me) : Porter
 * [Sirox](https://github.com/sirox228) : Fixing Some Stuff
