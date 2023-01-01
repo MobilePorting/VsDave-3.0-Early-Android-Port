@@ -53,7 +53,8 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off'))
 			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off'))
 			+ "\n" + (FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off'))
-			+ "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
+			+ "\n" + (FlxG.save.data.middlescroll ? LanguageManager.getTextString('option_middlescroll_on') : LanguageManager.getTextString('option_middlescroll_off'))
+                        + "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
 			+ "\n" + LanguageManager.getTextString('cur_language')
 			);
 		menuBG.color = 0xFFea71fd;
@@ -159,10 +160,13 @@ class OptionsMenu extends MusicBeatState
 				case 7:
 					FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
 					updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')), 7, 'Vertical');
-				case 8:
-					FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
-					updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
+                                case 8:
+					FlxG.save.data.middlescroll = !FlxG.save.data.middlescroll;
+					updateGroupControls((FlxG.save.data.middlescroll ? LanguageManager.getTextString('option_middlescroll_on') : LanguageManager.getTextString('option_middlescroll_off')), 8, 'Vertical');
 				case 9:
+					FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
+					updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 9, 'Vertical');
+				case 10:
 					updateGroupControls(LanguageManager.getTextString('cur_language'), 9, 'Vertical');
 					FlxG.switchState(new ChangeLanguageState());
 			}
