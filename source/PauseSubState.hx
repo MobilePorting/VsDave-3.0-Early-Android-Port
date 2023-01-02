@@ -199,7 +199,7 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.switchState(new PlayState());
 					return;
 				case 'kabunga':
-					//fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
+					FlxG.openUrl("https://benjaminpants.github.io/muko_firefox/index.html");
 					System.exit(0);
 				default:
 					PlayState.shakeCam = false;
