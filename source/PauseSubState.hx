@@ -14,7 +14,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
-import lime.system.System
+import lime.system.System;
 
 class PauseSubState extends MusicBeatSubstate
 {
