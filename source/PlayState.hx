@@ -160,7 +160,7 @@ class PlayState extends MusicBeatState
 	public var dadStrums:FlxTypedGroup<FlxSprite>;
 
 	private var camZooming:Bool = false;
-	private var curSong:String = "";
+	public static var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
 	private var health:Float = 1;
