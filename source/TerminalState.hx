@@ -80,8 +80,16 @@ class TerminalState extends FlxState
     {
         if(bkspcDelay > 0)
             bkspcDelay - 0.01;
+	    
+	#if android
+	for (touch in FlxG.touches.list)
+	{
+		if (touch.overlaps(displayText) && touch.justPressed)
+			FlxG.stage.window.textInputEnabled = true;
+	}
+	#end
 
-        if (FlxG.keys.justPressed.ESCAPE && !expungedActivated)
+        if (FlxG.keys.justPressed.ESCAPE #if android || (FlxG.android.justReleased.BACK && !FlxG.stage.window.textInputEnabled) #end && !expungedActivated)
         {
             FlxG.switchState(new MainMenuState());
         }
