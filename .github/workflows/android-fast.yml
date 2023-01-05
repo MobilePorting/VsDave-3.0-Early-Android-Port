@@ -5,7 +5,7 @@ on: [workflow_dispatch]
 jobs:
   build-armv7-and-arm64:
     name: Android
-    runs-on: ubuntu-${{ matrix.version }}
+    runs-on: self-hosted
     strategy:
       matrix:
         arch: [arm64, armv7]
