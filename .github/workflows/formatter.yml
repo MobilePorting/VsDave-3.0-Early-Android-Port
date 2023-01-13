@@ -27,8 +27,8 @@ jobs:
           rm -rR ./haxe-4.2.5-linux64
           rm -rR ./neko-2.3.0-linux64
           ls -la
-          # git config --local user.email "actions@github.com"
-          # git config --local user.name "GitHub Actions"
-          # git add .
-          # git commit -m "Runned Formatter $GITHUB_SHA" || true
-          # git push -u origin main
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m "Runned Formatter" || true
+          git push -u origin main
