@@ -48,8 +48,10 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 
 	public static var bgPaths:Array<String> = [
-		'Aadsta', 'ArtiztGmer', 'DeltaKastel', 'DeltaKastel2', 'DeltaKastel3', 'DeltaKastel4', 'DeltaKastel5', 'diamond man', 'Jukebox', 'kiazu', 'Lancey',
-		'mamakotomi', 'mantis', 'mepperpint', 'morie', 'neon', 'Onuko', 'ps', 'ricee_png', 'sk0rbias', 'SwagnotrllyTheMod', 'zombought',
+		    'Aadsta', 'ArtiztGmer', 'DeltaKastel', 'DeltaKastel2', 'DeltaKastel3', 'DeltaKastel4', 'DeltaKastel5', 'diamond man',  'Jukebox',
+		            'kiazu',   'Lancey',
+		'mamakotomi',     'mantis',  'mepperpint',        'morie',         'neon',        'Onuko',           'ps',   'ricee_png', 'sk0rbias',
+		'SwagnotrllyTheMod', 'zombought',
 	];
 
 	var logoBl:FlxSprite;

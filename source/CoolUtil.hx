@@ -13,9 +13,11 @@ class CoolUtil
 {
 	public static var difficultyArray:Array<String> = new Array<String>();
 	public static var exploitationDifficulties:Array<String> = [
-		                          "YOU'RE FUCKED",          'HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA',
-		                                              "YOU CAN'T ESCAPE FROM THE FUN ALREADY",
-		"EXPUNGED'S REIGN IS HERE, YOU'RE FUCKED", "YOU HAVE REACHED THE END OF THE RABBIT HOLE",
+		"YOU'RE FUCKED",
+		'HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA',
+		"YOU CAN'T ESCAPE FROM THE FUN ALREADY",
+		"EXPUNGED'S REIGN IS HERE, YOU'RE FUCKED",
+		"YOU HAVE REACHED THE END OF THE RABBIT HOLE",
 		"YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS",
 	];
 

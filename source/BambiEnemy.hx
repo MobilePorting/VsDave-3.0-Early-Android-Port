@@ -65,35 +65,35 @@ class BambiEnemy extends FlxSprite
 	function move()
 	{
 		/*if ((velocity.x != 0 || velocity.y != 0))
+			{
+				if (Math.abs(velocity.x) > Math.abs(velocity.y))
 				{
-					if (Math.abs(velocity.x) > Math.abs(velocity.y))
-					{
-						if (velocity.x < 0)
-							facing = LEFT;
-						else
-							facing = RIGHT;
-					}
+					if (velocity.x < 0)
+						facing = LEFT;
 					else
-					{
-						if (velocity.y < 0)
-							facing = UP;
-						else
-							facing = DOWN;
-					}
+						facing = RIGHT;
+				}
+				else
+				{
+					if (velocity.y < 0)
+						facing = UP;
+					else
+						facing = DOWN;
+				}
 
-					switch (facing)
-					{
-						case LEFT, RIGHT:
-							animation.play("lr");
+				switch (facing)
+				{
+					case LEFT, RIGHT:
+						animation.play("lr");
 
-						case UP:
-							animation.play("u");
+					case UP:
+						animation.play("u");
 
-						case DOWN:
-							animation.play("d");
+					case DOWN:
+						animation.play("d");
 
-						case _:
-					}
+					case _:
+				}
 		}*/
 
 		if ((velocity.x != 0 || velocity.y != 0))
