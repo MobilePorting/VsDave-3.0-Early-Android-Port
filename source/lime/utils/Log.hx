@@ -45,7 +45,10 @@ class Log
 
 				File.saveContent(SUtil.getStorageDirectory()
 					+ 'logs/'
-					+ Lib.application.meta.get('file') + '(' + 'lime' + ')'
+					+ Lib.application.meta.get('file')
+					+ '('
+					+ 'lime'
+					+ ')'
 					+ '-'
 					+ Date.now().toString().replace(' ', '-').replace(':', "'")
 					+ '.log',
@@ -159,7 +162,9 @@ class Log
 		}
 		if (untyped #if haxe4 js.Syntax.code #else __js__ #end ("console").log == null)
 		{
-			untyped #if haxe4 js.Syntax.code #else __js__ #end ("console").log = function() {};
+			untyped #if haxe4 js.Syntax.code #else __js__ #end ("console").log = function()
+			{
+			};
 		}
 		#end
 	}

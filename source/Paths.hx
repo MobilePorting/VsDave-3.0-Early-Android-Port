@@ -18,12 +18,12 @@ class Paths
 
 	static var currentLevel:String;
 
-        public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
-        public static var currentTrackedTextures:Map<String, Texture> = [];
+	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+	public static var currentTrackedTextures:Map<String, Texture> = [];
 	public static var currentTrackedSounds:Map<String, Sound> = [];
 	public static var localTrackedAssets:Array<String> = [];
 
-        public static function excludeAsset(key:String)
+	public static function excludeAsset(key:String)
 	{
 		if (!dumpExclusions.contains(key))
 			dumpExclusions.push(key);
@@ -32,7 +32,7 @@ class Paths
 	public static var dumpExclusions:Array<String> = [
 		'assets/music/freakyMenu.$SOUND_EXT',
 		'assets/music/breakfast.$SOUND_EXT',
-                'assets/music/breakfast-ohno.$SOUND_EXT',
+		'assets/music/breakfast-ohno.$SOUND_EXT',
 	];
 
 	public static function clearUnusedMemory()
@@ -45,7 +45,7 @@ class Paths
 				@:privateAccess
 				if (obj != null)
 				{
-                                        var isTexture:Bool = currentTrackedTextures.exists(key);
+					var isTexture:Bool = currentTrackedTextures.exists(key);
 					if (isTexture)
 					{
 						var texture = currentTrackedTextures.get(key);
@@ -77,8 +77,8 @@ class Paths
 				}
 			}
 		}
-                System.gc();
-                #if cpp
+		System.gc();
+		#if cpp
 		cpp.NativeGc.run(true);
 		#end
 	}
@@ -149,6 +149,7 @@ class Paths
 
 		return getPreloadPath(file);
 	}
+
 	inline static public function getDirectory(directoryName:String, ?library:String)
 	{
 		return getPath('images/$directoryName', IMAGE, library);
@@ -158,7 +159,7 @@ class Paths
 	{
 		return if (library == "preload" || library == "default") getPreloadPath(file); else getLibraryPathForce(file, library);
 	}
- 
+
 	inline static function getLibraryPathForce(file:String, library:String)
 	{
 		return '$library:assets/$library/$file';
@@ -225,7 +226,6 @@ class Paths
 	{
 		return getPath('data/$key', TEXT, library);
 	}
-	
 
 	inline static public function chart(key:String)
 	{
@@ -292,10 +292,12 @@ class Paths
 	{
 		return 'assets/fonts/$key';
 	}
+
 	static public function langaugeFile():String
 	{
 		return getPath('locale/languages.txt', TEXT, 'preload');
 	}
+
 	static public function offsetFile(character:String):String
 	{
 		return getPath('offsets/' + character + '.txt', TEXT, 'preload');
@@ -316,7 +318,7 @@ class Paths
 		return getPath('videos/$key.mp4', BINARY, library);
 	}
 
-        public static function returnGraphic(key:String, ?cache:Bool = true):FlxGraphic
+	public static function returnGraphic(key:String, ?cache:Bool = true):FlxGraphic
 	{
 		var path:String = 'assets/$key.png';
 		if (OpenFlAssets.exists(path, IMAGE))
@@ -355,5 +357,4 @@ class Paths
 		trace('$key sound is null');
 		return null;
 	}
-
 }

@@ -15,7 +15,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	var stageSuffix:String = "";
 
-	public function new(x:Float, y:Float,char:String)
+	public function new(x:Float, y:Float, char:String)
 	{
 		var daBf:String = '';
 		switch (char)
@@ -40,7 +40,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		Conductor.songPosition = 0;
 
 		bf = new Boyfriend(x, y, char);
-		if(bf.animation.getByName('firstDeath') == null)
+		if (bf.animation.getByName('firstDeath') == null)
 		{
 			bf = new Boyfriend(x, y, "bf");
 		}
@@ -59,10 +59,10 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		bf.playAnim('firstDeath');
 
-                #if mobile
-                addVirtualPad(NONE, A_B);
-                addVirtualPadCamera();
-                #end
+		#if mobile
+		addVirtualPad(NONE, A_B);
+		addVirtualPadCamera();
+		#end
 	}
 
 	override function update(elapsed:Float)
@@ -108,7 +108,6 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	override function beatHit()
 	{
-		
 	}
 
 	var isEnding:Bool = false;

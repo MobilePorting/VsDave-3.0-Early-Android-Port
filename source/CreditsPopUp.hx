@@ -9,11 +9,13 @@ import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;
 
-typedef SongHeading = {
+typedef SongHeading =
+{
 	var path:String;
 	var antiAliasing:Bool;
 	var ?animation:Animation;
 }
+
 class CreditsPopUp extends FlxSpriteGroup
 {
 	public var bg:FlxSprite;
@@ -62,8 +64,11 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 2:
 				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true};
 			case 8:
-				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
-				animation: new Animation('expunged', 'Expunged', 24, true, [false, false])};
+				headingPath = {
+					path: 'songHeadings/expungedHeading',
+					antiAliasing: true,
+					animation: new Animation('expunged', 'Expunged', 24, true, [false, false])
+				};
 		}
 		if (headingPath != null)
 		{
@@ -91,7 +96,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		var values = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (values[1] / values[0])));
 		funnyIcon.updateHitbox();
-      
+
 		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 
 		funnyIcon.x = funnyText.x + funnyText.frameWidth + 20;
@@ -103,10 +108,11 @@ class CreditsPopUp extends FlxSpriteGroup
 		bg.updateHitbox();
 		add(funnyText);
 	}
+
 	public function updateHitboxes()
 	{
 		var values = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		
+
 		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (values[1] / values[0])));
 		funnyIcon.updateHitbox();
 
@@ -115,10 +121,10 @@ class CreditsPopUp extends FlxSpriteGroup
 		funnyIcon.x = funnyText.x + funnyText.frameWidth + 20;
 		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);
 
-
 		bg.setGraphicSize(Std.int((funnyText.frameWidth + funnyIcon.width) + 20), Std.int(funnyText.height) + 40);
 		bg.updateHitbox();
 	}
+
 	public function switchHeading(newHeading:SongHeading)
 	{
 		remove(bg);
@@ -138,6 +144,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		bg.antialiasing = newHeading.antiAliasing;
 		updateHitboxes();
 	}
+
 	public function changeText(newText:String, newIcon:String)
 	{
 		funnyText.text = newText;

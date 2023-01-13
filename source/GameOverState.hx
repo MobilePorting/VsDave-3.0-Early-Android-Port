@@ -33,7 +33,7 @@ class GameOverState extends FlxTransitionableState
 		loser.antialiasing = true;
 		add(loser);
 
-		var bf:Boyfriend = new Boyfriend(bfX, bfY,charr);
+		var bf:Boyfriend = new Boyfriend(bfX, bfY, charr);
 		// bf.scrollFactor.set();
 		add(bf);
 		bf.playAnim('firstDeath');
@@ -54,29 +54,29 @@ class GameOverState extends FlxTransitionableState
 
 		/*
 
-		private void Update()
-	{
-		this.delay -= 1f * Time.deltaTime;
-		if (this.delay <= 0f)
-		{
-			if (this.chance < 1f)
+				private void Update()
 			{
-				SceneManager.LoadScene("MainMenu");
-				return;
+				this.delay -= 1f * Time.deltaTime;
+				if (this.delay <= 0f)
+				{
+					if (this.chance < 1f)
+					{
+						SceneManager.LoadScene("MainMenu");
+						return;
+					}
+					this.image.transform.localScale = new Vector3(UnityEngine.Random.Range(0f, 5f), UnityEngine.Random.Range(0f, 5f), UnityEngine.Random.Range(0f, 1f));
+					this.image.color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
+					if (!this.audioDevice.isPlaying)
+					{
+						this.audioDevice.Play();
+					}
+					if (this.delay <= -5f)
+					{
+						SceneManager.LoadScene("MainMenu");
+					}
+				}
 			}
-			this.image.transform.localScale = new Vector3(UnityEngine.Random.Range(0f, 5f), UnityEngine.Random.Range(0f, 5f), UnityEngine.Random.Range(0f, 1f));
-			this.image.color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
-			if (!this.audioDevice.isPlaying)
-			{
-				this.audioDevice.Play();
-			}
-			if (this.delay <= -5f)
-			{
-				SceneManager.LoadScene("MainMenu");
-			}
-		}
-	}
-	*/
+		 */
 
 		super.create();
 	}

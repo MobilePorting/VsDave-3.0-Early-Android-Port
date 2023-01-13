@@ -29,14 +29,7 @@ class MainMenuState extends MusicBeatState
 	var curSelected:Int = 0;
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
-	var optionShit:Array<String> = 
-	[
-		'story mode', 
-		'freeplay', 
-		'credits',
-		'extras', 
-		'options'
-	];
+	var optionShit:Array<String> = ['story mode', 'freeplay', 'credits', 'extras', 'options'];
 
 	public static var firstStart:Bool = true;
 
@@ -45,65 +38,26 @@ class MainMenuState extends MusicBeatState
 	public static var daRealEngineVer:String = 'Dave';
 	public static var engineVer:String = '3.0';
 
-	public static var engineVers:Array<String> = 
-	[
-		'Dave', 
-		'Bambi', 
-		'Tristan'
-	];
+	public static var engineVers:Array<String> = ['Dave', 'Bambi', 'Tristan'];
 
 	public static var kadeEngineVer:String = "DAVE";
 	public static var gameVer:String = "0.2.7.1";
-	
+
 	var bg:FlxSprite;
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
+
 	public static var bgPaths:Array<String> = [
-		'Aadsta',
-		'ArtiztGmer',
-		'DeltaKastel',
-		'DeltaKastel2',
-		'DeltaKastel3',
-		'DeltaKastel4',
-		'DeltaKastel5',
-		'diamond man',
-		'Jukebox',
-		'kiazu',
-		'Lancey',
-		'mamakotomi',
-		'mantis',
-		'mepperpint',
-		'morie',
-		'neon',
-		'Onuko',
-		'ps',
-		'ricee_png',
-		'sk0rbias',
-		'SwagnotrllyTheMod',
-		'zombought',
+		'Aadsta', 'ArtiztGmer', 'DeltaKastel', 'DeltaKastel2', 'DeltaKastel3', 'DeltaKastel4', 'DeltaKastel5', 'diamond man', 'Jukebox', 'kiazu', 'Lancey',
+		'mamakotomi', 'mantis', 'mepperpint', 'morie', 'neon', 'Onuko', 'ps', 'ricee_png', 'sk0rbias', 'SwagnotrllyTheMod', 'zombought',
 	];
 
 	var logoBl:FlxSprite;
 
 	var lilMenuGuy:FlxSprite;
 
-	var easterEggKeyCombination:Array<FlxKey> = 
-	[
-		FlxKey.I, 
-		FlxKey.L, 
-		FlxKey.O, 
-		FlxKey.V, 
-		FlxKey.E, 
-		FlxKey.G, 
-		FlxKey.O, 
-		FlxKey.L, 
-		FlxKey.D, 
-		FlxKey.E, 
-		FlxKey.N, 
-		FlxKey.A, 
-		FlxKey.P, 
-		FlxKey.P, 
-		FlxKey.L, 
+	var easterEggKeyCombination:Array<FlxKey> = [
+		FlxKey.I, FlxKey.L, FlxKey.O, FlxKey.V, FlxKey.E, FlxKey.G, FlxKey.O, FlxKey.L, FlxKey.D, FlxKey.E, FlxKey.N, FlxKey.A, FlxKey.P, FlxKey.P, FlxKey.L,
 		FlxKey.E
 	];
 	var lastKeysPressed:Array<FlxKey> = [];
@@ -113,10 +67,8 @@ class MainMenuState extends MusicBeatState
 
 	var voidShader:Shaders.GlitchEffect;
 
-
 	override function create()
 	{
-
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 		if (!FlxG.sound.music.playing)
 		{
@@ -127,7 +79,7 @@ class MainMenuState extends MusicBeatState
 		#if desktop
 		DiscordClient.changePresence("In the Menus", null);
 		#end
-		
+
 		KeybindPrefs.loadControls();
 
 		// daRealEngineVer = engineVers[FlxG.random.int(0, 2)];
@@ -139,12 +91,12 @@ class MainMenuState extends MusicBeatState
 			bg.antialiasing = false;
 			bg.color = FlxColor.multiply(bg.color, FlxColor.fromRGB(50, 50, 50));
 			add(bg);
-			
+
 			voidShader = new Shaders.GlitchEffect();
 			voidShader.waveAmplitude = 0.1;
 			voidShader.waveFrequency = 5;
 			voidShader.waveSpeed = 2;
-			
+
 			bg.shader = voidShader.shader;
 
 			magenta = new FlxSprite(-600, -200).loadGraphic(bg.graphic);
@@ -166,7 +118,7 @@ class MainMenuState extends MusicBeatState
 			bg.antialiasing = true;
 			bg.color = 0xFFFDE871;
 			add(bg);
-	
+
 			magenta = new FlxSprite(-80).loadGraphic(bg.graphic);
 			magenta.scrollFactor.set();
 			magenta.setGraphicSize(Std.int(magenta.width * 1.1));
@@ -177,7 +129,6 @@ class MainMenuState extends MusicBeatState
 			magenta.color = 0xFFfd719b;
 			add(magenta);
 		}
-		
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -233,12 +184,12 @@ class MainMenuState extends MusicBeatState
 			goToFreeplay.screenCenter(X);
 			goToFreeplay.alpha = 0;
 			goToFreeplay.scrollFactor.set();
-	
-	
-			var blackBorder:FlxSprite = new FlxSprite(goToFreeplay.x, goToFreeplay.y).makeGraphic(Std.int(goToFreeplay.width + 20), Std.int(goToFreeplay.height + 10), FlxColor.BLACK);
+
+			var blackBorder:FlxSprite = new FlxSprite(goToFreeplay.x,
+				goToFreeplay.y).makeGraphic(Std.int(goToFreeplay.width + 20), Std.int(goToFreeplay.height + 10), FlxColor.BLACK);
 			blackBorder.alpha = 0;
 			blackBorder.scrollFactor.set();
-	
+
 			add(blackBorder);
 			add(goToFreeplay);
 
@@ -263,12 +214,12 @@ class MainMenuState extends MusicBeatState
 		}
 
 		#if mobile
-                addVirtualPad(UP_DOWN, A_B);
-                #end
+		addVirtualPad(UP_DOWN, A_B);
+		#end
 
 		super.create();
 	}
-	
+
 	var selectedSomethin:Bool = false;
 
 	override function update(elapsed:Float)
@@ -442,7 +393,6 @@ class MainMenuState extends MusicBeatState
 
 			if (spr.ID == curSelected && finishedFunnyMove)
 			{
-		
 				spr.animation.play('selected');
 				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
 			}

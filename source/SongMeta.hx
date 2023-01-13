@@ -4,7 +4,6 @@ import Section.SwagSection;
 import haxe.Json;
 import haxe.format.JsonParser;
 import lime.utils.Assets;
-
 #if windows
 import lime.app.Application;
 #end
@@ -14,8 +13,8 @@ using StringTools;
 typedef SongMeta =
 {
 	var showInFreeplay:Bool;
-    var requireUnlock:Bool;
-    var songPack:String;
+	var requireUnlock:Bool;
+	var songPack:String;
 }
 
 class SongMetadata

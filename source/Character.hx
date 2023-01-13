@@ -23,10 +23,10 @@ class Character extends FlxSprite
 
 	public var nativelyPlayable:Bool = false;
 
-	public var globaloffset:Array<Float> = [0,0];
-	
+	public var globaloffset:Array<Float> = [0, 0];
+
 	public var barColor:FlxColor;
-	
+
 	public var canSing:Bool = true;
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
@@ -38,7 +38,7 @@ class Character extends FlxSprite
 		this.isPlayer = isPlayer;
 
 		var tex:FlxAtlasFrames;
-		
+
 		antialiasing = true;
 
 		switch (curCharacter)
@@ -46,7 +46,7 @@ class Character extends FlxSprite
 			case 'bf':
 				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
 				frames = tex;
-				
+
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
@@ -87,16 +87,15 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWNmiss', 'BF DOWN MISS', 24, false);
 
 				loadOffsetFile(curCharacter);
-					
+
 				globaloffset[0] = -200;
 				globaloffset[1] = -175;
 
 				barColor = FlxColor.fromRGB(49, 176, 209);
-				
-				
+
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
-				
+
 				playAnim('idle');
 
 				width -= 100;
@@ -107,7 +106,7 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 
 				flipX = true;
-				
+
 			case 'bf-pixel-dead':
 				frames = Paths.getSparrowAtlas('weeb/bfPixelsDEAD', 'shared');
 				animation.addByPrefix('singUP', "BF Dies pixel", 24, false);
@@ -124,7 +123,7 @@ class Character extends FlxSprite
 				antialiasing = false;
 				nativelyPlayable = true;
 				flipX = true;
-			
+
 			case 'gf':
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('characters/GF_assets', 'shared');
@@ -158,7 +157,7 @@ class Character extends FlxSprite
 					globaloffset[0] = -200;
 					globaloffset[1] = -175;
 				}
-				
+
 				loadOffsetFile(curCharacter);
 
 				playAnim('danceRight');
@@ -177,9 +176,9 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'up', 24, false);
 				animation.addByPrefix('singRIGHT', 'right', 24, false);
 				animation.addByPrefix('hey', 'hey', 24, false);
-	
+
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
 				playAnim('idle');
@@ -193,9 +192,9 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Down', 24, false);
 				animation.addByPrefix('singLEFT', 'Left', 24, false);
 				animation.addByPrefix('scared', 'Scared', 24, true);
-	
+
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
 				playAnim('idle');
@@ -208,11 +207,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'righ', 24, false);
 				animation.addByPrefix('singDOWN', 'dow', 24, false);
 				animation.addByPrefix('singLEFT', 'lef', 24, false);
-	
+
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(15, 95, 255);
-	
+
 				playAnim('idle');
 
 			case 'dave-angey':
@@ -224,17 +223,17 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'RIGHT', 24, false);
 				animation.addByPrefix('singDOWN', 'DOWN', 24, false);
 				animation.addByPrefix('singLEFT', 'LEFT', 24, false);
-		
+
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(249, 180, 207);
 
-				setGraphicSize(Std.int(width * furiosityScale),Std.int(height * furiosityScale));
+				setGraphicSize(Std.int(width * furiosityScale), Std.int(height * furiosityScale));
 				updateHitbox();
 				antialiasing = false;
-		
+
 				playAnim('idle');
-				
+
 			case 'dave-splitathon':
 				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Dave', 'shared');
 				animation.addByPrefix('idle', 'SplitIdle', 24, false);
@@ -247,7 +246,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('happy', 'Happy', 24, true);
 
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
 				playAnim('idle');
@@ -268,7 +267,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-	
+
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
 				loadOffsetFile(curCharacter);
@@ -316,9 +315,9 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'splitathon right', 24, false);
 				animation.addByPrefix('yummyCornLol', 'splitathon corn', 24, true);
 				animation.addByPrefix('umWhatIsHappening', 'confused Idle', 24, true);
-							
+
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
 				playAnim('idle');
@@ -336,7 +335,7 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
-	
+
 			case 'bambi-3d':
 				// BAMBI SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('bambi/characters/Cheating', 'shared');
@@ -346,19 +345,18 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'Right', 24, false);
 				animation.addByPrefix('singDOWN', 'Down', 24, false);
 				animation.addByPrefix('singLEFT', 'Left', 24, false);
-		
+
 				barColor = FlxColor.fromRGB(17, 223, 10);
 
 				loadOffsetFile(curCharacter);
 
 				globaloffset[0] = 150;
-				globaloffset[1] = 450; //this is the y
+				globaloffset[1] = 450; // this is the y
 				setGraphicSize(Std.int((width * 1.5) / furiosityScale));
 				updateHitbox();
 				antialiasing = false;
-		
+
 				playAnim('idle');
-			
 
 			case 'bambi-unfair':
 				// BAMBI SHITE ANIMATION LOADING CODE
@@ -369,17 +367,17 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'singRIGHT', 24, false);
 				animation.addByPrefix('singDOWN', 'singDOWN', 24, false);
 				animation.addByPrefix('singLEFT', 'singLEFT', 24, false);
-		
+
 				barColor = FlxColor.fromRGB(178, 7, 7);
 
 				loadOffsetFile(curCharacter);
 
 				globaloffset[0] = 150 * 1.3;
-				globaloffset[1] = 450 * 1.3; //this is the y
+				globaloffset[1] = 450 * 1.3; // this is the y
 				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
 				updateHitbox();
 				antialiasing = false;
-		
+
 				playAnim('idle');
 
 			case 'expunged':
@@ -391,19 +389,19 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'Right', 24, false);
 				animation.addByPrefix('singDOWN', 'Down', 24, false);
 				animation.addByPrefix('singLEFT', 'Left', 24, false);
-		
+
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(82, 15, 15);
 
 				globaloffset[0] = 150 * 0.8;
-				globaloffset[1] = 450 * 0.8; //this is the y
+				globaloffset[1] = 450 * 0.8; // this is the y
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
 				antialiasing = false;
-		
+
 				playAnim('idle');
-			
+
 			case 'bambi-old':
 				var tex = Paths.getSparrowAtlas('bambi/characters/bambi-old', 'shared');
 				frames = tex;
@@ -421,17 +419,15 @@ class Character extends FlxSprite
 				animation.addByPrefix('firstDeath', "MARCELLO dead0", 24, false);
 				animation.addByPrefix('deathLoop', "MARCELLO dead0", 24, true);
 				animation.addByPrefix('deathConfirm', "MARCELLO dead0", 24, false);
-	
-				
+
 				barColor = FlxColor.fromRGB(12, 181, 0);
 
 				loadOffsetFile(curCharacter);
-				
 
 				playAnim('idle');
 
 				nativelyPlayable = true;
-	
+
 				flipX = true;
 			case 'tristan':
 				var tex = Paths.getSparrowAtlas('dave/TRISTAN', 'shared');
@@ -446,26 +442,26 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
-	
+
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
-	
+
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
 				barColor = FlxColor.fromRGB(255, 19, 15);
-	
+
 				playAnim('idle');
 
 				nativelyPlayable = true;
-	
+
 				flipX = true;
 
 			case 'tristan-golden':
-			    var tex = Paths.getSparrowAtlas('dave/tristan_golden', 'shared');
+				var tex = Paths.getSparrowAtlas('dave/tristan_golden', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -477,22 +473,22 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
-	
+
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
-	
+
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
-				
+
 				barColor = FlxColor.fromRGB(255, 222, 0);
-				
+
 				playAnim('idle');
 
 				nativelyPlayable = true;
-	
+
 				flipX = true;
 			case 'tristan-golden-glowing':
 				var tex = Paths.getSparrowAtlas('dave/tristan_golden_glowing', 'shared');
@@ -507,36 +503,36 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
-		
+
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
-		
+
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
-					
+
 				barColor = FlxColor.fromRGB(255, 222, 0);
-					
+
 				playAnim('idle');
-	
+
 				nativelyPlayable = true;
-		
-				flipX = true;	
+
+				flipX = true;
 			case 'tristan-festival':
 				frames = Paths.getSparrowAtlas('festival/tristan_festival');
-				
+
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
 				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				
+
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
-				
+
 				barColor = FlxColor.fromRGB(255, 19, 15);
-				
+
 				nativelyPlayable = true;
 				flipX = true;
 				playAnim('idle');
@@ -550,18 +546,18 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(253, 39, 33);
 
 				playAnim('idle');
-	
+
 				nativelyPlayable = true;
-	
+
 				flipX = true;
 
 				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
 				updateHitbox();
-	
+
 				antialiasing = false;
 
 			// Bananacore shit
@@ -576,7 +572,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'Cockey right', 24, false);
 				animation.addByPrefix('singDOWN', 'Cockey down', 24, false);
 				animation.addByPrefix('singLEFT', 'Cockey left', 24, false);
-		
+
 				loadOffsetFile(curCharacter);
 
 				barColor = FlxColor.fromRGB(228, 85, 81);
@@ -584,9 +580,8 @@ class Character extends FlxSprite
 				setGraphicSize(Std.int(width * 2));
 				updateHitbox();
 				antialiasing = false;
-		
+
 				playAnim('idle');
-			
 
 			case 'pissey':
 				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Pissey', 'shared');
@@ -598,15 +593,15 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'left', 24, false);
 				animation.addByPrefix('phoneOFF', 'turning his phone off', 24, true);
 				animation.addByPrefix('phoneAWAY', 'putting his phone away', 24, false);
-		
+
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(255, 206, 11);
 
 				setGraphicSize(Std.int(width * 1.85));
 				updateHitbox();
 				antialiasing = false;
-		
+
 				playAnim('idle');
 
 			case 'shartey':
@@ -618,15 +613,15 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Shartey down', 24, false);
 				animation.addByPrefix('singLEFT', 'Shartey left', 24, false);
 				animation.addByPrefix('singDOWN-alt', 'Shartey alt-down', 24, false);
-			
+
 				loadOffsetFile(curCharacter);
-					
+
 				barColor = FlxColor.fromRGB(104, 191, 202);
-	
+
 				setGraphicSize(Std.int(width * 1.65));
 				updateHitbox();
 				antialiasing = false;
-			
+
 				playAnim('idle');
 
 			case 'pooper':
@@ -637,15 +632,15 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'right', 24, false);
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('singLEFT', 'left', 24, false);
-			
+
 				loadOffsetFile(curCharacter);
-				
+
 				barColor = FlxColor.fromRGB(136, 104, 107);
 
 				setGraphicSize(Std.int(width * 4.75));
 				updateHitbox();
 				antialiasing = false;
-			
+
 				playAnim('idle');
 
 			case 'bartholemew':
@@ -671,7 +666,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
 
 				loadOffsetFile(curCharacter);
-	
+
 				playAnim('idle');
 
 			case 'cuzsiee':
@@ -682,10 +677,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'cuzsiee right', 24);
 				animation.addByPrefix('singDOWN', 'cuzsiee down', 24);
 				animation.addByPrefix('singLEFT', 'cuzsiee left', 24);
-	
+
 				loadOffsetFile(curCharacter);
-		
-				playAnim('idle');	
+
+				playAnim('idle');
 
 			case 'ayo-the-pizza-here':
 				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/PizzaMan', "shared");
@@ -697,7 +692,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'Left', 24);
 				animation.addByPrefix('pizza', 'PizzasHere', 24);
 				loadOffsetFile(curCharacter);
-		
+
 				playAnim('idle');
 			case 'recurser':
 				frames = Paths.getSparrowAtlas('recursed/Recurser', "shared");
@@ -734,24 +729,25 @@ class Character extends FlxSprite
 
 				flipX = true;
 				barColor = FlxColor.WHITE;
-				
+
 				loadOffsetFile(curCharacter);
-				
+
 				nativelyPlayable = true;
 
 				playAnim('idle');
 		}
 		dance();
 
-		if(isPlayer)
+		if (isPlayer)
 		{
 			flipX = !flipX;
 		}
 	}
+
 	function loadOffsetFile(character:String)
 	{
 		var offsetStuffs:Array<String> = CoolUtil.coolTextFile(Paths.offsetFile(character));
-		
+
 		for (offsetText in offsetStuffs)
 		{
 			var offsetInfo:Array<String> = offsetText.split(' ');
@@ -831,26 +827,26 @@ class Character extends FlxSprite
 	{
 		if (animation.getByName(AnimName) == null)
 		{
-			return; //why wasn't this a thing in the first place
+			return; // why wasn't this a thing in the first place
 		}
-		if(AnimName.toLowerCase() == 'idle' && !canDance)
+		if (AnimName.toLowerCase() == 'idle' && !canDance)
 		{
 			return;
 		}
-		
-		if(AnimName.toLowerCase().startsWith('sing') && !canSing)
+
+		if (AnimName.toLowerCase().startsWith('sing') && !canSing)
 		{
 			return;
 		}
-		
+
 		animation.play(AnimName, Force, Reversed, Frame);
-	
+
 		var daOffset = animOffsets.get(AnimName);
 		if (animOffsets.exists(AnimName))
 		{
 			if (isPlayer)
 			{
-				if(!nativelyPlayable)
+				if (!nativelyPlayable)
 				{
 					offset.set((daOffset[0] * -1) + globaloffset[0], daOffset[1] + globaloffset[1]);
 				}
@@ -861,7 +857,7 @@ class Character extends FlxSprite
 			}
 			else
 			{
-				if(nativelyPlayable)
+				if (nativelyPlayable)
 				{
 					offset.set((daOffset[0] * -1), daOffset[1]);
 				}
@@ -871,10 +867,9 @@ class Character extends FlxSprite
 				}
 			}
 		}
-		
 		else
 			offset.set(0, 0);
-	
+
 		if (curCharacter == 'gf')
 		{
 			if (AnimName == 'singLEFT')
@@ -885,7 +880,7 @@ class Character extends FlxSprite
 			{
 				danced = false;
 			}
-	
+
 			if (AnimName == 'singUP' || AnimName == 'singDOWN')
 			{
 				danced = !danced;

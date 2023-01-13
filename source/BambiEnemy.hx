@@ -28,8 +28,8 @@ class BambiEnemy extends FlxSprite
 		var graphic = Paths.image("bambiCornGame/bambi", 'shared');
 		loadGraphic(graphic, true, 32, 32);
 		setGraphicSize(64, 64);
-		//setFacingFlip(LEFT, false, false);
-		//setFacingFlip(RIGHT, true, false);
+		// setFacingFlip(LEFT, false, false);
+		// setFacingFlip(RIGHT, true, false);
 		animation.add("d", [0, 1, 0, 2], 6, false);
 		animation.add("lr", [3, 4, 3, 5], 6, false);
 		animation.add("u", [6, 7, 6, 8], 6, false);
@@ -57,7 +57,7 @@ class BambiEnemy extends FlxSprite
 
 		if (!lockMovement)
 			move();
-		
+
 		brain.update(elapsed);
 		super.update(elapsed);
 	}
@@ -65,35 +65,35 @@ class BambiEnemy extends FlxSprite
 	function move()
 	{
 		/*if ((velocity.x != 0 || velocity.y != 0))
-		{
-			if (Math.abs(velocity.x) > Math.abs(velocity.y))
-			{
-				if (velocity.x < 0)
-					facing = LEFT;
-				else
-					facing = RIGHT;
-			}
-			else
-			{
-				if (velocity.y < 0)
-					facing = UP;
-				else
-					facing = DOWN;
-			}
-	
-			switch (facing)
-			{
-				case LEFT, RIGHT:
-					animation.play("lr");
-	
-				case UP:
-					animation.play("u");
-	
-				case DOWN:
-					animation.play("d");
-	
-				case _:
-			}
+				{
+					if (Math.abs(velocity.x) > Math.abs(velocity.y))
+					{
+						if (velocity.x < 0)
+							facing = LEFT;
+						else
+							facing = RIGHT;
+					}
+					else
+					{
+						if (velocity.y < 0)
+							facing = UP;
+						else
+							facing = DOWN;
+					}
+
+					switch (facing)
+					{
+						case LEFT, RIGHT:
+							animation.play("lr");
+
+						case UP:
+							animation.play("u");
+
+						case DOWN:
+							animation.play("d");
+
+						case _:
+					}
 		}*/
 
 		if ((velocity.x != 0 || velocity.y != 0))
@@ -101,7 +101,6 @@ class BambiEnemy extends FlxSprite
 			stepSound.setPosition(x + frameWidth / 2, y + height);
 			stepSound.play();
 		}
-	
 	}
 
 	public function idle(elapsed:Float)

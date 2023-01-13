@@ -18,18 +18,18 @@ class AttachedText extends FlxText
 	{
 		super.update(elapsed);
 
-		if (sprTracker != null) {
+		if (sprTracker != null)
+		{
 			setPosition(sprTracker.x + xAdd, sprTracker.y + yAdd);
 			scrollFactor.set(sprTracker.scrollFactor.x, sprTracker.scrollFactor.y);
-			if(copyAlpha)
+			if (copyAlpha)
 			{
 				alpha = sprTracker.alpha * alphaMultiplier;
 			}
-			if(copyVisible)
+			if (copyVisible)
 			{
 				visible = sprTracker.visible;
 			}
 		}
 	}
 }
-

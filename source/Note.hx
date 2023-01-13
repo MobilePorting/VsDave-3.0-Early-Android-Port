@@ -17,6 +17,7 @@ import polymod.format.ParseRules.TargetSignatureElement;
 import PlayState;
 
 using StringTools;
+
 import StringTools;
 
 class Note extends FlxSprite
@@ -55,7 +56,8 @@ class Note extends FlxSprite
 
 	public var noteObject:FlxObject;
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal", inCharter:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal",
+			inCharter:Bool = false)
 	{
 		super();
 
@@ -70,7 +72,7 @@ class Note extends FlxSprite
 		y -= 2000;
 		if (inCharter)
 			this.strumTime = strumTime;
-		else 
+		else
 			this.strumTime = Math.round(strumTime);
 
 		if (this.strumTime < 0)
@@ -86,11 +88,13 @@ class Note extends FlxSprite
 		var notePathLol:String = '';
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 
-		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) 
+		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit)
 			|| ((CharactersWith3D.contains(PlayState.SONG.player1)
 				|| CharactersWith3D.contains(PlayState.characteroverride)
-				|| CharactersWith3D.contains(PlayState.formoverride)) && musthit))
-				|| ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
+				|| CharactersWith3D.contains(PlayState.formoverride))
+				&& musthit))
+			|| ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1))
+				&& ((this.strumTime / 50) % 20 > 10)))
 		{
 			this.noteStyle = '3D';
 			notePathLol = 'notes/NOTE_assets_3D';
@@ -119,12 +123,12 @@ class Note extends FlxSprite
 			animation.addByPrefix('redScroll', 'red0');
 			animation.addByPrefix('blueScroll', 'blue0');
 			animation.addByPrefix('purpleScroll', 'purple0');
-	
+
 			animation.addByPrefix('purpleholdend', 'pruple end hold');
 			animation.addByPrefix('greenholdend', 'green hold end');
 			animation.addByPrefix('redholdend', 'red hold end');
 			animation.addByPrefix('blueholdend', 'blue hold end');
-	
+
 			animation.addByPrefix('purplehold', 'purple hold piece');
 			animation.addByPrefix('greenhold', 'green hold piece');
 			animation.addByPrefix('redhold', 'red hold piece');
@@ -336,7 +340,7 @@ class Note extends FlxSprite
 			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
 				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
 				canBeHit = true;
-			else 
+			else
 				canBeHit = false;
 
 			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)

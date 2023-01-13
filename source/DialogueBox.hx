@@ -68,7 +68,7 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'supernovae' | 'glitch':
 				randomNumber = FlxG.random.int(0, 50);
-				if(randomNumber == 50)
+				if (randomNumber == 50)
 				{
 					FlxG.sound.playMusic(Paths.music('secret'), 0);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
@@ -80,7 +80,7 @@ class DialogueBox extends FlxSpriteGroup
 				}
 			case 'blocked' | 'corn-theft' | 'maze':
 				randomNumber = FlxG.random.int(0, 50);
-				if(randomNumber == 50)
+				if (randomNumber == 50)
 				{
 					FlxG.sound.playMusic(Paths.music('secret'), 0);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
@@ -95,17 +95,17 @@ class DialogueBox extends FlxSpriteGroup
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
 		bgFade.scrollFactor.set();
 		bgFade.alpha = 0;
-		add(bgFade);	
+		add(bgFade);
 
 		FlxTween.tween(bgFade, {alpha: 0.7}, 4.15);
-		
+
 		blackScreen = new FlxSprite(0, 0).makeGraphic(5000, 5000, FlxColor.BLACK);
 		blackScreen.screenCenter();
 		blackScreen.alpha = 0;
 		add(blackScreen);
-		
+
 		box = new FlxSprite(-20, 400);
-		
+
 		if (PlayState.instance.hasDialogue)
 		{
 			box.frames = Paths.getSparrowAtlas('ui/speech_bubble_talking');
@@ -117,10 +117,10 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		this.dialogueList = dialogueList;
-		
+
 		if (!PlayState.instance.hasDialogue)
 			return;
-		
+
 		var portraitLeftCharacter:Array<String> = new Array<String>();
 		var portraitRightCharacter:Array<String> = new Array<String>();
 
@@ -128,7 +128,7 @@ class DialogueBox extends FlxSpriteGroup
 		portraitRight = new FlxSprite();
 
 		portraitRightCharacter = ['bf', 'normal'];
-		
+
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'house':
@@ -155,7 +155,6 @@ class DialogueBox extends FlxSpriteGroup
 			case 'unfairness':
 				portraitLeftCharacter = ['bambi', 'unfair'];
 		}
-		
 
 		var leftPortrait:Portrait = getPortrait(portraitLeftCharacter[0], portraitLeftCharacter[1]);
 
@@ -165,12 +164,12 @@ class DialogueBox extends FlxSpriteGroup
 		portraitLeft.scrollFactor.set();
 
 		var rightPortrait:Portrait = getPortrait(portraitRightCharacter[0], portraitRightCharacter[1]);
-		
+
 		portraitRight.frames = Paths.getSparrowAtlas(rightPortrait.portraitPath);
 		portraitRight.animation.addByPrefix('enter', rightPortrait.portraitPrefix, 24, false);
 		portraitRight.updateHitbox();
 		portraitRight.scrollFactor.set();
-		
+
 		portraitRight.visible = false;
 
 		switch (PlayState.SONG.song.toLowerCase())
@@ -198,7 +197,7 @@ class DialogueBox extends FlxSpriteGroup
 				dropText.color = 0xFFFFFFFF;
 				dropText.antialiasing = true;
 				add(dropText);
-			
+
 				swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
 				swagDialogue.font = 'Comic Sans MS Bold';
 				swagDialogue.color = 0xFF000000;
@@ -211,7 +210,7 @@ class DialogueBox extends FlxSpriteGroup
 				dropText.color = 0xFF00137F;
 				dropText.antialiasing = true;
 				add(dropText);
-		
+
 				swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
 				swagDialogue.font = 'Comic Sans MS Bold';
 				swagDialogue.color = 0xFF000000;
@@ -250,10 +249,10 @@ class DialogueBox extends FlxSpriteGroup
 			dialogueStarted = true;
 		}
 
-		if (FlxG.keys.justPressed.ANY  && dialogueStarted)
+		if (FlxG.keys.justPressed.ANY && dialogueStarted)
 		{
 			remove(dialogue);
-			
+
 			switch (PlayState.SONG.song.toLowerCase())
 			{
 				default:
@@ -265,7 +264,7 @@ class DialogueBox extends FlxSpriteGroup
 				if (!isEnding)
 				{
 					isEnding = true;
-						
+
 					FlxG.sound.music.fadeOut(2.2, 0);
 
 					switch (PlayState.SONG.song.toLowerCase())
@@ -292,7 +291,7 @@ class DialogueBox extends FlxSpriteGroup
 				startDialogue();
 			}
 		}
-		
+
 		super.update(elapsed);
 	}
 
@@ -338,18 +337,18 @@ class DialogueBox extends FlxSpriteGroup
 			}
 			switch (curCharacter)
 			{
-				case 'dave' | 'bambi' | 'tristan': //guys its the funny bambi character
-						portraitLeft.setPosition(220, 220);
-				case 'bf' | 'gf': //create boyfriend & genderbent boyfriend
+				case 'dave' | 'bambi' | 'tristan': // guys its the funny bambi character
+					portraitLeft.setPosition(220, 220);
+				case 'bf' | 'gf': // create boyfriend & genderbent boyfriend
 					portraitRight.setPosition(570, 220);
 			}
 			box.flipX = portraitLeft.visible;
 			portraitLeft.x -= 150;
-			//portraitRight.x += 100;
+			// portraitRight.x += 100;
 			portraitLeft.antialiasing = !noAa.contains(portrait.portraitPath);
 			portraitRight.antialiasing = true;
-			portraitLeft.animation.play('enter',true);
-			portraitRight.animation.play('enter',true);
+			portraitLeft.animation.play('enter', true);
+			portraitRight.animation.play('enter', true);
 		}
 		else
 		{
@@ -360,12 +359,12 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			case 'distort':
 				/*var shad:Shaders.PulseEffect = new Shaders.PulseEffect();
-				curshader = shad;
-				shad.waveAmplitude = 1;
-				shad.waveFrequency = 2;
-				shad.waveSpeed = 1;
-				shad.shader.uTime.value[0] = new flixel.math.FlxRandom().float(-100000,100000);
-				shad.shader.uampmul.value[0] = 1;*/
+					curshader = shad;
+					shad.waveAmplitude = 1;
+					shad.waveFrequency = 2;
+					shad.waveSpeed = 1;
+					shad.shader.uTime.value[0] = new flixel.math.FlxRandom().float(-100000,100000);
+					shad.shader.uampmul.value[0] = 1; */
 				PlayState.screenshader.Enabled = true;
 			case 'undistort':
 				PlayState.screenshader.Enabled = false;
@@ -387,9 +386,10 @@ class DialogueBox extends FlxSpriteGroup
 				dropText.font = Paths.font("barcode.ttf");
 				swagDialogue.font = Paths.font("barcode.ttf");
 			case 'to_black':
-				FlxTween.tween(blackScreen, {alpha:1}, 0.25);
+				FlxTween.tween(blackScreen, {alpha: 1}, 0.25);
 		}
 	}
+
 	function getPortrait(character:String, expression:String):Portrait
 	{
 		var portrait:Portrait = new Portrait('', '', '', true);
@@ -498,17 +498,19 @@ class DialogueBox extends FlxSpriteGroup
 
 		curCharacter = splitCharacters[0];
 		curExpression = splitCharacters[1];
-		
+
 		dialogueList[0] = dialogueList[0].substr(splitName[1].length + splitName[0].length + 2).trim();
 	}
 }
+
 class Portrait
 {
 	public var portraitPath:String;
 	public var portraitLibraryPath:String = '';
 	public var portraitPrefix:String;
 	public var left:Bool;
-	public function new (portraitPath:String, portraitLibraryPath:String = '', portraitPrefix:String, left:Bool)
+
+	public function new(portraitPath:String, portraitLibraryPath:String = '', portraitPrefix:String, left:Bool)
 	{
 		this.portraitPath = portraitPath;
 		this.portraitLibraryPath = portraitLibraryPath;

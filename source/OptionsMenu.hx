@@ -32,31 +32,42 @@ class OptionsMenu extends MusicBeatState
 	var languages:Array<Language> = new Array<Language>();
 	var currentLanguage:Int = 0;
 	var curLanguage:String = LanguageManager.save.data.language;
+
 	override function create()
 	{
-                Paths.clearUnusedMemory();
-                Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+		Paths.clearStoredMemory();
 
 		#if desktop
 		DiscordClient.changePresence("In the Options Menu", null);
 		#end
 		var menuBG:FlxSprite = new FlxSprite();
-		
+
 		languages = LanguageManager.getLanguages();
 
-		controlsStrings = CoolUtil.coolStringFile( 
-			LanguageManager.getTextString('change_keybind')
-			+ "\n" + (FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')) 
-			+ "\n" + (FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll'))
-			+ "\n" + (FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off'))
-			+ "\n" + (FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')) 
-			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off'))
-			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off'))
-			+ "\n" + (FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off'))
-			+ "\n" + (FlxG.save.data.middlescroll ? LanguageManager.getTextString('option_middlescroll_on') : LanguageManager.getTextString('option_middlescroll_off'))
-                        + "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
-			+ "\n" + LanguageManager.getTextString('cur_language')
-			);
+		controlsStrings = CoolUtil.coolStringFile(LanguageManager.getTextString('change_keybind')
+			+ "\n"
+			+ (FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off'))
+			+ "\n"
+			+ (FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll'))
+			+ "\n"
+			+ (FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off'))
+			+ "\n"
+			+ (FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled'))
+			+ "\n"
+			+
+			(FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off'))
+			+ "\n"
+			+ (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off'))
+			+ "\n"
+			+
+			(FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off'))
+			+ "\n"
+			+ (FlxG.save.data.middlescroll ? LanguageManager.getTextString('option_middlescroll_on') : LanguageManager.getTextString('option_middlescroll_off'))
+			+ "\n"
+			+ (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
+			+ "\n"
+			+ LanguageManager.getTextString('cur_language'));
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
@@ -69,12 +80,12 @@ class OptionsMenu extends MusicBeatState
 
 		for (i in 0...controlsStrings.length)
 		{
-				var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, controlsStrings[i], true, false);
-				controlLabel.screenCenter(X);
-				controlLabel.itemType = 'Vertical';
-				controlLabel.isMenuItem = true;
-				controlLabel.targetY = i;
-				grpControls.add(controlLabel);
+			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, controlsStrings[i], true, false);
+			controlLabel.screenCenter(X);
+			controlLabel.itemType = 'Vertical';
+			controlLabel.isMenuItem = true;
+			controlLabel.targetY = i;
+			grpControls.add(controlLabel);
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
 
@@ -83,17 +94,17 @@ class OptionsMenu extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-                #if mobile
-                addVirtualPad(UP_DOWN, A_B_C);
-                #end
+		#if mobile
+		addVirtualPad(UP_DOWN, A_B_C);
+		#end
 
-                #if mobile
-                var xd:FlxText = new FlxText(10, 14, 0, 'Press C to customize your android controls', 16);
-                xd.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-                xd.borderSize = 2.4;
-                xd.scrollFactor.set();
-                add(xd);
-                #end
+		#if mobile
+		var xd:FlxText = new FlxText(10, 14, 0, 'Press C to customize your android controls', 16);
+		xd.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		xd.borderSize = 2.4;
+		xd.scrollFactor.set();
+		add(xd);
+		#end
 
 		super.create();
 	}
@@ -102,13 +113,13 @@ class OptionsMenu extends MusicBeatState
 	{
 		super.update(elapsed);
 
-                #if mobile
-                if (virtualPad.buttonC.justPressed)
-                {
-                removeVirtualPad();
-		openSubState(new mobile.MobileControlsSubState());
-                }
-                #end
+		#if mobile
+		if (virtualPad.buttonC.justPressed)
+		{
+			removeVirtualPad();
+			openSubState(new mobile.MobileControlsSubState());
+		}
+		#end
 
 		if (controls.BACK)
 			FlxG.switchState(new MainMenuState());
@@ -127,11 +138,11 @@ class OptionsMenu extends MusicBeatState
 		{
 			FlxG.save.data.offset--;
 			versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset;
-		}	
+		}
 		if (controls.ACCEPT)
 		{
 			grpControls.remove(grpControls.members[curSelected]);
-			switch(curSelected)
+			switch (curSelected)
 			{
 				case 0:
 					new FlxTimer().start(0.01, function(timer:FlxTimer)
@@ -141,31 +152,40 @@ class OptionsMenu extends MusicBeatState
 					updateGroupControls(LanguageManager.getTextString('change_keybind'), 0, 'Vertical');
 				case 1:
 					FlxG.save.data.newInput = !FlxG.save.data.newInput;
-					updateGroupControls((FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')), 1, 'Vertical');	
+					updateGroupControls((FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')),
+						1, 'Vertical');
 				case 2:
 					FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
-					updateGroupControls((FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll')), 2, 'Vertical');
+					updateGroupControls((FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll')),
+						2, 'Vertical');
 				case 3:
 					FlxG.save.data.songPosition = !FlxG.save.data.songPosition;
-					updateGroupControls((FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off')), 3, 'Vertical');	
+					updateGroupControls((FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off')),
+						3, 'Vertical');
 				case 4:
 					FlxG.save.data.eyesores = !FlxG.save.data.eyesores;
-					updateGroupControls((FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')), 4, 'Vertical');
+					updateGroupControls((FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')),
+						4, 'Vertical');
 				case 5:
 					FlxG.save.data.selfAwareness = !FlxG.save.data.selfAwareness;
-					updateGroupControls((FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off')), 5, 'Vertical');
+					updateGroupControls((FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off')),
+						5, 'Vertical');
 				case 6:
 					FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
-					updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');
+					updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')),
+						6, 'Vertical');
 				case 7:
 					FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
-					updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')), 7, 'Vertical');
-                                case 8:
+					updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')),
+						7, 'Vertical');
+				case 8:
 					FlxG.save.data.middlescroll = !FlxG.save.data.middlescroll;
-					updateGroupControls((FlxG.save.data.middlescroll ? LanguageManager.getTextString('option_middlescroll_on') : LanguageManager.getTextString('option_middlescroll_off')), 8, 'Vertical');
+					updateGroupControls((FlxG.save.data.middlescroll ? LanguageManager.getTextString('option_middlescroll_on') : LanguageManager.getTextString('option_middlescroll_off')),
+						8, 'Vertical');
 				case 9:
 					FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
-					updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 9, 'Vertical');
+					updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')),
+						9, 'Vertical');
 				case 10:
 					updateGroupControls(LanguageManager.getTextString('cur_language'), 9, 'Vertical');
 					FlxG.switchState(new ChangeLanguageState());
@@ -178,8 +198,9 @@ class OptionsMenu extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-		FlxTween.tween(FlxG.camera, {zoom:1.05}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
+		FlxTween.tween(FlxG.camera, {zoom: 1.05}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
 	}
+
 	function updateGroupControls(controlText:String, yIndex:Int, controlTextItemType:String)
 	{
 		var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, controlText, true, false);
@@ -195,7 +216,7 @@ class OptionsMenu extends MusicBeatState
 		#if !switch
 		// NGio.logEvent('Fresh');
 		#end
-		
+
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
 		curSelected += change;

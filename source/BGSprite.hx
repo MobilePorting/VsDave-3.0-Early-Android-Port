@@ -1,4 +1,5 @@
 package;
+
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxSprite;
 
@@ -7,10 +8,12 @@ using StringTools;
 class BGSprite extends FlxSprite
 {
 	public var spriteName:String;
-	public function new(spriteName:String, posX:Float, posY:Float, path:String = '', animations:Array<Animation>, scrollX:Float = 1, scrollY:Float = 1, antialiasing:Bool = true, active:Bool = false)
+
+	public function new(spriteName:String, posX:Float, posY:Float, path:String = '', animations:Array<Animation>, scrollX:Float = 1, scrollY:Float = 1,
+			antialiasing:Bool = true, active:Bool = false)
 	{
 		super(posX, posY);
-		
+
 		this.spriteName = spriteName;
 		var hasAnimations:Bool = !(animations == null);
 
@@ -37,9 +40,9 @@ class BGSprite extends FlxSprite
 		scrollFactor.set(scrollX, scrollY);
 		this.active = active;
 	}
+
 	public static function getBGSprite(spriteGroup:FlxTypedGroup<BGSprite>, spriteName:String):BGSprite
 	{
-		
 		for (bgSprite in spriteGroup.members)
 		{
 			if (bgSprite.spriteName == spriteName)

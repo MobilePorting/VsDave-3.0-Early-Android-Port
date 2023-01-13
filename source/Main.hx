@@ -20,6 +20,7 @@ class Main extends Sprite
 	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+
 	public static var currentPackGlobal:String = "";
 
 	static var fps:FpsDisplay;
@@ -35,7 +36,7 @@ class Main extends Sprite
 
 	public function new()
 	{
-                SUtil.uncaughtErrorHandler();
+		SUtil.uncaughtErrorHandler();
 
 		super();
 
@@ -75,7 +76,7 @@ class Main extends Sprite
 		}
 
 		initialState = StartStateSelector;
-                SUtil.checkPermissions();
+		SUtil.checkPermissions();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
 		fps = new FpsDisplay(10, 3, 0xFFFFFF);
@@ -84,7 +85,7 @@ class Main extends Sprite
 		addChild(fps);
 	}
 
-        public function getFPS():Float
+	public function getFPS():Float
 	{
 		return fps.currentFPS;
 	}

@@ -1,4 +1,5 @@
 package;
+
 import lime.app.Application;
 import haxe.Exception;
 import Controls.Control;
@@ -18,13 +19,12 @@ import flixel.util.FlxStringUtil;
 import lime.app.Application;
 #end
 
- /**
+/**
 	hey you fun commiting people, 
 	i don't know about the rest of the mod but since this is basically 99% my code 
 	i do not give you guys permission to grab this specific code and re-use it in your own mods without asking me first.
 	the secondary dev, ben
-*/
-
+ */
 class CharacterInSelect
 {
 	public var name:String;
@@ -38,6 +38,7 @@ class CharacterInSelect
 		this.forms = forms;
 	}
 }
+
 class CharacterForm
 {
 	public var name:String;
@@ -53,6 +54,7 @@ class CharacterForm
 		this.noteMs = noteMs;
 	}
 }
+
 class CharacterSelectState extends MusicBeatState
 {
 	public var char:Boyfriend;
@@ -61,7 +63,7 @@ class CharacterSelectState extends MusicBeatState
 	public var notemodtext:FlxText;
 	public var characterText:FlxText;
 	public var wasInFullscreen:Bool;
-	
+
 	public var funnyIconMan:HealthIcon;
 
 	var strummies:FlxTypedGroup<FlxSprite>;
@@ -82,12 +84,11 @@ class CharacterSelectState extends MusicBeatState
 	var noteMsTexts:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 
 	var arrows:Array<FlxSprite> = [];
-	
-	public var characters:Array<CharacterInSelect> = 
-	[
+
+	public var characters:Array<CharacterInSelect> = [
 		new CharacterInSelect('bf', [1, 1, 1, 1], [
-			new CharacterForm('bf', 'Boyfriend', [1,1,1,1]),
-			new CharacterForm('bf-pixel', 'Pixel Boyfriend', [1,1,1,1])
+			new CharacterForm('bf', 'Boyfriend', [1, 1, 1, 1]),
+			new CharacterForm('bf-pixel', 'Pixel Boyfriend', [1, 1, 1, 1])
 		]),
 		new CharacterInSelect('dave', [0.25, 0.25, 2, 2], [
 			new CharacterForm('dave', 'Dave', [0.25, 0.25, 2, 2]),
@@ -100,14 +101,13 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('bambi-angey', 'Bambie', [0, 0, 3, 0]),
 			new CharacterForm('bambi', 'Mr. Bambi', [0, 0, 3, 0])
 		]),
-		new CharacterInSelect('tristan', [2, 0.5, 0.5, 0.5], [
-			new CharacterForm('tristan', 'Tristan', [2, 0.5, 0.5, 0.5]),
-			new CharacterForm('tristan-festival', 'Tristan (Festival)', [2, 0.5, 0.5, 0.5]),
-			new CharacterForm('tristan-golden', 'Golden Tristan', [0.25, 0.25, 0.25, 2])
-		]),
-		new CharacterInSelect('dave-angey', [2, 2, 0.25, 0.25], [
-			new CharacterForm('dave-angey', '3D Dave', [2, 2, 0.25, 0.25], '3D')
-		]),
+		new CharacterInSelect('tristan', [2, 0.5, 0.5, 0.5],
+			[
+				new CharacterForm('tristan', 'Tristan', [2, 0.5, 0.5, 0.5]),
+				new CharacterForm('tristan-festival', 'Tristan (Festival)', [2, 0.5, 0.5, 0.5]),
+				new CharacterForm('tristan-golden', 'Golden Tristan', [0.25, 0.25, 0.25, 2])
+			]),
+		new CharacterInSelect('dave-angey', [2, 2, 0.25, 0.25], [new CharacterForm('dave-angey', '3D Dave', [2, 2, 0.25, 0.25], '3D')]),
 		new CharacterInSelect('bambi-3d', [0, 3, 0, 0], [
 			new CharacterForm('bambi-3d', '[EXPUNGED] (Bambi)', [0, 3, 0, 0], '3D'),
 			new CharacterForm('bambi-unfair', '[EXPUNGED] (Unfair)', [0, 3, 0, 0], '3D'),
@@ -119,20 +119,22 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('pooper', 'Pooper', [1, 1, 1, 1])
 		])
 	];
+
 	var bgShader:Shaders.GlitchEffect;
-	public function new() 
+
+	public function new()
 	{
 		super();
 	}
-	
-	override public function create():Void 
+
+	override public function create():Void
 	{
-                Paths.clearUnusedMemory();
-                Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+		Paths.clearStoredMemory();
 
 		super.create();
 
-                if (PlayState.SONG.song.toLowerCase() == 'exploitation')
+		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			if (FlxG.fullscreen)
 			{
@@ -165,16 +167,16 @@ class CharacterSelectState extends MusicBeatState
 		bg.antialiasing = true;
 		bg.scrollFactor.set(0.75, 0.75);
 		bg.active = false;
-		
+
 		if (PlayState.SONG.song.toLowerCase() == "exploitation")
 		{
 			bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
-			
+
 			bgShader = new Shaders.GlitchEffect();
 			bgShader.waveAmplitude = 0.1;
 			bgShader.waveFrequency = 5;
 			bgShader.waveSpeed = 2;
-			
+
 			bg.shader = bgShader.shader;
 		}
 		add(bg);
@@ -212,19 +214,19 @@ class CharacterSelectState extends MusicBeatState
 
 		strummies = new FlxTypedGroup<FlxSprite>();
 		strummies.cameras = [camHUD];
-		
+
 		add(strummies);
 		generateStaticArrows(false);
-		
+
 		notemodtext = new FlxText((FlxG.width / 3.5) + 80, 40, 0, "1.00x       1.00x        1.00x       1.00x", 30);
-		notemodtext.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		notemodtext.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		notemodtext.scrollFactor.set();
 		notemodtext.alpha = 0;
 		notemodtext.y -= 10;
 		FlxTween.tween(notemodtext, {y: notemodtext.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * 0)});
 		notemodtext.cameras = [camHUD];
 		add(notemodtext);
-		
+
 		characterText = new FlxText((FlxG.width / 9) - 50, (FlxG.height / 8) - 225, "Boyfriend");
 		characterText.font = 'Comic Sans MS Bold';
 		characterText.setFormat(Paths.font("comic.ttf"), 90, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -235,7 +237,7 @@ class CharacterSelectState extends MusicBeatState
 		characterText.cameras = [camHUD];
 		characterText.antialiasing = true;
 		add(characterText);
-		
+
 		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, LanguageManager.getTextString('character_reset'));
 		resetText.font = 'Comic Sans MS Bold';
 		resetText.setFormat(Paths.font("comic.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -259,23 +261,23 @@ class CharacterSelectState extends MusicBeatState
 		tutorialThing.cameras = [camHUD];
 		add(tutorialThing);
 
-		var arrowLeft:FlxSprite = new FlxSprite(5,0).loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
+		var arrowLeft:FlxSprite = new FlxSprite(5, 0).loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
 		arrowLeft.screenCenter(Y);
 		arrowLeft.scrollFactor.set();
 		arrows[0] = arrowLeft;
 		add(arrowLeft);
 
-		var arrowRight:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image("ui/ArrowRight_Idle", "preload"));
+		var arrowRight:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image("ui/ArrowRight_Idle", "preload"));
 		arrowRight.screenCenter(Y);
 		arrowRight.x = 1280 - arrowRight.width - 5;
 		arrowRight.scrollFactor.set();
 		arrows[1] = arrowRight;
 		add(arrowRight);
 
-                #if mobile
-                addVirtualPad(LEFT_FULL, A_B_X_Y);
-                addVirtualPadCamera();
-                #end
+		#if mobile
+		addVirtualPad(LEFT_FULL, A_B_X_Y);
+		addVirtualPadCamera();
+		#end
 	}
 
 	private function generateStaticArrows(noteType:String = 'normal', regenerated:Bool):Void
@@ -335,7 +337,7 @@ class CharacterSelectState extends MusicBeatState
 			babyArrow.updateHitbox();
 			babyArrow.scrollFactor.set();
 			babyArrow.ID = i;
-	
+
 			babyArrow.animation.play('static');
 			babyArrow.x += 50;
 			babyArrow.x += ((FlxG.width / 3.5));
@@ -348,14 +350,15 @@ class CharacterSelectState extends MusicBeatState
 			strummies.add(babyArrow);
 		}
 	}
-	override public function update(elapsed:Float):Void 
+
+	override public function update(elapsed:Float):Void
 	{
 		if (bgShader != null)
 		{
 			bgShader.shader.uTime.value[0] += elapsed;
 		}
 		Conductor.songPosition = FlxG.sound.music.time;
-		
+
 		var controlSet:Array<Bool> = [controls.LEFT_P, controls.DOWN_P, controls.UP_P, controls.RIGHT_P];
 
 		super.update(elapsed);
@@ -370,12 +373,12 @@ class CharacterSelectState extends MusicBeatState
 		}
 
 		if (#if mobile virtualPad.buttonY.justPressed || #end FlxG.keys.justPressed.SEVEN)
+		{
+			for (character in characters)
 			{
-				for (character in characters)
-				{
-					unlockCharacter(character.name); //unlock everyone
-				}
+				unlockCharacter(character.name); // unlock everyone
 			}
+		}
 
 		for (i in 0...controlSet.length)
 		{
@@ -411,7 +414,7 @@ class CharacterSelectState extends MusicBeatState
 				PressedTheFunny = true;
 			}
 			selectedCharacter = true;
-			var heyAnimation:Bool = char.animation.getByName("hey") != null; 
+			var heyAnimation:Bool = char.animation.getByName("hey") != null;
 			char.playAnim(heyAnimation ? 'hey' : 'singUP', true);
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.music('gameOverEnd'));
@@ -442,7 +445,7 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 			arrows[1].loadGraphic(Paths.image("ui/ArrowRight_Pressed", "preload"));
 		}
-		
+
 		if (FlxG.keys.justReleased.LEFT)
 			arrows[0].loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
 		if (FlxG.keys.justReleased.RIGHT)
@@ -474,6 +477,7 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.resetState();
 		}
 	}
+
 	public static function unlockCharacter(character:String)
 	{
 		if (!FlxG.save.data.charactersUnlocked.contains(character))
@@ -481,10 +485,12 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.save.data.charactersUnlocked.push(character);
 		}
 	}
+
 	public static function isLocked(character:String):Bool
 	{
 		return !FlxG.save.data.charactersUnlocked.contains(character);
 	}
+
 	public static function reset()
 	{
 		FlxG.save.data.charactersUnlocked = new Array<String>();
@@ -500,7 +506,7 @@ class CharacterSelectState extends MusicBeatState
 		{
 			generateStaticArrows(newSelectedCharacter.forms[curForm].noteType, true);
 		}
-		
+
 		currentSelectedCharacter = newSelectedCharacter;
 		characterText.text = currentSelectedCharacter.forms[curForm].polishedName;
 		char.destroy();
@@ -552,7 +558,14 @@ class CharacterSelectState extends MusicBeatState
 		}
 		characterText.screenCenter(X);
 		updateIconPosition();
-		notemodtext.text = FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[0]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[3]) + "x        " + FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[2]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[1]) + "x";
+		notemodtext.text = FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[0])
+			+ "x       "
+			+ FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[3])
+			+ "x        "
+			+ FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[2])
+			+ "x       "
+			+ FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[1])
+			+ "x";
 	}
 
 	override function beatHit()
@@ -563,15 +576,16 @@ class CharacterSelectState extends MusicBeatState
 			char.playAnim('idle', true);
 		}
 	}
+
 	function updateIconPosition()
 	{
-		//var xValues = CoolUtil.getMinAndMax(funnyIconMan.width, characterText.width);
+		// var xValues = CoolUtil.getMinAndMax(funnyIconMan.width, characterText.width);
 		var yValues = CoolUtil.getMinAndMax(funnyIconMan.height, characterText.height);
-		
+
 		funnyIconMan.x = characterText.x + characterText.width / 2;
 		funnyIconMan.y = characterText.y + ((yValues[0] - yValues[1]) / 2);
 	}
-	
+
 	public function endIt(e:FlxTimer = null)
 	{
 		PlayState.characteroverride = currentSelectedCharacter.name;
@@ -585,7 +599,8 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('error'), 0.9);
 
 			#if windows
-			Application.current.window.alert("Null Object Reference\nat PlayState.hx, line 60\nat ApplicationMain.hx, line 54\n\nUnexpected object: 'expunged'\nSee 'log.txt' for details", "Vs Dave");
+			Application.current.window.alert("Null Object Reference\nat PlayState.hx, line 60\nat ApplicationMain.hx, line 54\n\nUnexpected object: 'expunged'\nSee 'log.txt' for details",
+				"Vs Dave");
 			#end
 		}
 

@@ -22,8 +22,7 @@ import openfl.Assets;
 #if desktop
 import Discord.DiscordClient;
 #end
-
-// only load this reference if its debug because its only needed for debug??? idk it might help with the file size or something 
+// only load this reference if its debug because its only needed for debug??? idk it might help with the file size or something
 #if debug
 import openfl.net.FileReference;
 import haxe.Json;
@@ -49,15 +48,15 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-                Paths.clearUnusedMemory();
-                Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+		Paths.clearStoredMemory();
 
-                #if android
-                FlxG.android.preventDefaultKeys = [BACK];
-                #end
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
 
 		fun = FlxG.random.int(0, 999);
-		if(fun == 1)
+		if (fun == 1)
 		{
 			LoadingState.loadAndSwitchState(new SusState());
 		}
@@ -80,7 +79,7 @@ class TitleState extends MusicBeatState
 		LanguageManager.init();
 
 		Highscore.load();
-		
+
 		CoolUtil.init();
 
 		if (FlxG.save.data.weekUnlocked != null)
@@ -107,7 +106,7 @@ class TitleState extends MusicBeatState
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
 			startIntro();
-		});		
+		});
 		#end
 	}
 
@@ -132,7 +131,7 @@ class TitleState extends MusicBeatState
 			transIn = FlxTransitionableState.defaultTransIn;
 			transOut = FlxTransitionableState.defaultTransOut;
 
-			FlxG.sound.playMusic(Paths.music(awaitingExploitation ? 'freakyMenu_ex' : 'freakyMenu'), 0);			
+			FlxG.sound.playMusic(Paths.music(awaitingExploitation ? 'freakyMenu_ex' : 'freakyMenu'), 0);
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 		}
 
@@ -251,7 +250,7 @@ class TitleState extends MusicBeatState
 				pressedEnter = true;
 			#end
 		}
-		
+
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
 			titleText.animation.play('press');
@@ -283,11 +282,10 @@ class TitleState extends MusicBeatState
 		{
 			remove(credGroup);
 			skippedIntro = true;
-	
+
 			FlxG.camera.fade(FlxColor.WHITE, 2.5, true);
 		}
 	}
-
 
 	override function beatHit()
 	{
@@ -298,10 +296,12 @@ class TitleState extends MusicBeatState
 			danceLeft = !danceLeft;
 
 			logoBl.animation.play('bump');
-	
-			if (danceLeft) gfDance.animation.play('danceRight');
-			else gfDance.animation.play('danceLeft');
-	
+
+			if (danceLeft)
+				gfDance.animation.play('danceRight');
+			else
+				gfDance.animation.play('danceLeft');
+
 			switch (curBeat)
 			{
 				case 3:
@@ -330,8 +330,9 @@ class TitleState extends MusicBeatState
 				case 14:
 					addMoreText('The Full Mod');
 				case 15:
-					var text:String = !awaitingExploitation  ? 'and Bambi' : 'HAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA';
-					if (awaitingExploitation) FlxG.sound.play(Paths.sound('evilLaugh', 'shared'), 0.7);
+					var text:String = !awaitingExploitation ? 'and Bambi' : 'HAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA';
+					if (awaitingExploitation)
+						FlxG.sound.play(Paths.sound('evilLaugh', 'shared'), 0.7);
 					addMoreText(text);
 				case 16:
 					skipIntro();
@@ -365,7 +366,7 @@ class TitleState extends MusicBeatState
 		credGroup.add(coolText);
 		textGroup.add(coolText);
 	}
-	
+
 	function deleteCoolText()
 	{
 		while (textGroup.members.length > 0)
@@ -374,7 +375,7 @@ class TitleState extends MusicBeatState
 			textGroup.remove(textGroup.members[0], true);
 		}
 	}
-	
+
 	function deleteOneCoolText()
 	{
 		credGroup.remove(textGroup.members[0], true);

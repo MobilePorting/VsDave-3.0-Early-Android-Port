@@ -4,7 +4,6 @@ import Section.SwagSection;
 import haxe.Json;
 import haxe.format.JsonParser;
 import lime.utils.Assets;
-
 #if windows
 import lime.app.Application;
 #end
@@ -23,7 +22,6 @@ typedef SwagSong =
 	var player2:String;
 	var gf:String;
 	var stage:String;
-
 	var validScore:Bool;
 }
 
@@ -54,16 +52,16 @@ class Song
 		{
 			rawJson = Assets.getText(Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
 		}
-		catch(ex)
+		catch (ex)
 		{
-			var exep:String = "A fatal song error occured.\nThis may have happened because the song / pack you tried to load didnt exist.\nTry checking the file at " + Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase()).trim();
+			var exep:String = "A fatal song error occured.\nThis may have happened because the song / pack you tried to load didnt exist.\nTry checking the file at "
+				+ Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase()).trim();
 			#if windows
 			Application.current.window.alert(exep, "Vs Dave");
 			#else
 			trace(exep);
 			#end
 		}
-		
 
 		while (!rawJson.endsWith("}"))
 		{

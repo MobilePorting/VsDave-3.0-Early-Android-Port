@@ -35,26 +35,28 @@ class OutdatedSubState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-                for (touch in FlxG.touches.list)
-		if (controls.PAUSE #if mobile || touch.justPressed #end && FlxG.save.data.begin_thing == true)
-		{
-			leaveState();
-		}
-                for (touch in FlxG.touches.list)
-		if (FlxG.keys.justPressed.Y && FlxG.save.data.begin_thing != true || FlxG.keys.justPressed.ENTER #if mobile || touch.justPressed #end && FlxG.save.data.begin_thing != true)
-		{
-			FlxG.save.data.begin_thing = true;
-			FlxG.save.data.eyesores = true;
-			leaveState();
-		}
+		for (touch in FlxG.touches.list)
+			if (controls.PAUSE #if mobile || touch.justPressed #end && FlxG.save.data.begin_thing == true)
+			{
+				leaveState();
+			}
+		for (touch in FlxG.touches.list)
+			if (FlxG.keys.justPressed.Y && FlxG.save.data.begin_thing != true || FlxG.keys.justPressed.ENTER #if mobile || touch.justPressed #end
+				&& FlxG.save.data.begin_thing != true)
+			{
+				FlxG.save.data.begin_thing = true;
+				FlxG.save.data.eyesores = true;
+				leaveState();
+			}
 		if (FlxG.keys.justPressed.N && FlxG.save.data.begin_thing != true || FlxG.keys.justPressed.ENTER && FlxG.save.data.begin_thing != true)
 		{
 			FlxG.save.data.begin_thing = true;
 			FlxG.save.data.eyesores = false;
-			leaveState();	
+			leaveState();
 		}
 		super.update(elapsed);
 	}
+
 	function leaveState()
 	{
 		leftState = true;

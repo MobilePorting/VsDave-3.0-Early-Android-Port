@@ -37,7 +37,7 @@ class StoryMenuState extends MusicBeatState
 	];
 
 	var curDifficulty:Int = 1;
-	
+
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
@@ -50,7 +50,7 @@ class StoryMenuState extends MusicBeatState
 
 	var weekNames:Array<String> = [
 		LanguageManager.getTextString('story_tutorial'), // tutorial
-		LanguageManager.getTextString('story_daveWeek'), //dave week name
+		LanguageManager.getTextString('story_daveWeek'), // dave week name
 		LanguageManager.getTextString('story_bambiWeek'), // bambi week name
 		LanguageManager.getTextString('story_finale'), // finale week name
 		LanguageManager.getTextString('story_festivalWeek'), // festival week name
@@ -76,19 +76,18 @@ class StoryMenuState extends MusicBeatState
 	var rightArrow:FlxSprite;
 
 	var songColors:Array<FlxColor> = [
-      0xFFca1f6f, // GF
+		0xFFca1f6f, // GF
 		0xFF4965FF, // DAVE
 		0xFF00B515, // MISTER BAMBI RETARD
-		0xFF00FFFF, //SPLIT THE THONNNNN
-		0xFF800080, //FESTEVAL
-	
+		0xFF00FFFF, // SPLIT THE THONNNNN
+		0xFF800080, // FESTEVAL
 	];
 	var awaitingExploitation:Bool;
 
 	override function create()
 	{
-                Paths.clearUnusedMemory();
-                Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+		Paths.clearStoredMemory();
 
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 
@@ -152,7 +151,6 @@ class StoryMenuState extends MusicBeatState
 			weekThing.antialiasing = true;
 			// weekThing.updateHitbox();
 
-			
 			// Needs an offset thingie
 			if (!weekUnlocked[i])
 			{
@@ -228,13 +226,12 @@ class StoryMenuState extends MusicBeatState
 
 		updateText();
 
-                #if mobile
-                addVirtualPad(LEFT_FULL, A_B);
-                #end
+		#if mobile
+		addVirtualPad(LEFT_FULL, A_B);
+		#end
 
 		super.create();
 	}
-
 
 	override function update(elapsed:Float)
 	{
@@ -342,22 +339,21 @@ class StoryMenuState extends MusicBeatState
 				{
 					case 1:
 						FlxG.sound.music.stop();
-                                                LoadingState.loadAndSwitchState(new PlayState(), true);
-						/*var video:MP4Handler;
+						LoadingState.loadAndSwitchState(new PlayState(), true);
+					/*var video:MP4Handler;
 						video = new MP4Handler();
 						video.finishCallback = function()
 						{
 							LoadingState.loadAndSwitchState(new PlayState(), true);
 						}
-						video.playVideo(Paths.video('daveCutscene'));*/
+						video.playVideo(Paths.video('daveCutscene')); */
 					default:
 						LoadingState.loadAndSwitchState(new PlayState(), true);
-					
 				}
-
 			});
 		}
 	}
+
 	function updateDifficultySprite()
 	{
 		sprDifficulty.offset.x = 0;
@@ -388,7 +384,7 @@ class StoryMenuState extends MusicBeatState
 	function changeDifficulty(change:Int = 0):Void
 	{
 		curDifficulty += change;
-		
+
 		if (curDifficulty < 0)
 			curDifficulty = 2;
 		if (curDifficulty > 2)
@@ -430,9 +426,9 @@ class StoryMenuState extends MusicBeatState
 			curDifficulty = 0;
 
 		updateDifficultySprite();
-		
+
 		var bullShit:Int = 0;
-		
+
 		for (item in grpWeekText.members)
 		{
 			item.targetY = bullShit - curWeek;
@@ -450,7 +446,6 @@ class StoryMenuState extends MusicBeatState
 		updateText();
 		imageBgCheck();
 	}
-	
 
 	function imageBgCheck()
 	{

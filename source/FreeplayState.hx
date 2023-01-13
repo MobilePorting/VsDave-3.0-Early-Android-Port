@@ -33,8 +33,9 @@ class FreeplayState extends MusicBeatState
 	var curSelected:Int = 0;
 	var curDifficulty:Int = 1;
 
-        private static var vocals:FlxSound = null;
-        var instPlaying:Int = -1;
+	private static var vocals:FlxSound = null;
+
+	var instPlaying:Int = -1;
 
 	var bg:FlxSprite = new FlxSprite();
 
@@ -52,7 +53,11 @@ class FreeplayState extends MusicBeatState
 	private var CurrentSongIcon:FlxSprite;
 
 	private var Catagories:Array<String> = [];
-	var translatedCategory:Array<String> = [LanguageManager.getTextString('freeplay_dave'), LanguageManager.getTextString('freeplay_joke'), LanguageManager.getTextString('freeplay_extra')];
+	var translatedCategory:Array<String> = [
+		LanguageManager.getTextString('freeplay_dave'),
+		LanguageManager.getTextString('freeplay_joke'),
+		LanguageManager.getTextString('freeplay_extra')
+	];
 
 	private var CurrentPack:Int = 0;
 
@@ -60,22 +65,22 @@ class FreeplayState extends MusicBeatState
 
 	var loadingPack:Bool = false;
 
-	var songColors:Array<FlxColor> = 
-	[
-    	0xFFca1f6f,    // GF
-		0xFF4965FF,    // DAVE
-		0xFF00B515,    // MISTER BAMBI RETARD
-		0xFF00FFFF,    // SPLIT THE THONNNNN
-		0xFF800080,    // FESTIVAL
-		0xFFFF0000,    // TRISTAN
-		0xFFFF0000,    // UNFAIRNESS
-		0xFFFF0000,    // KABUNGA
-		0xFFFF0000,    // EXPLOITATION
-		0xFFFFC0CB,    // ELECTRIC COCKADOODLEDOO
-		FlxColor.fromRGB(44, 44, 44),    // RECURSER
-    ];
+	var songColors:Array<FlxColor> = [
+		0xFFca1f6f, // GF
+		0xFF4965FF, // DAVE
+		0xFF00B515, // MISTER BAMBI RETARD
+		0xFF00FFFF, // SPLIT THE THONNNNN
+		0xFF800080, // FESTIVAL
+		0xFFFF0000, // TRISTAN
+		0xFFFF0000, // UNFAIRNESS
+		0xFFFF0000, // KABUNGA
+		0xFFFF0000, // EXPLOITATION
+		0xFFFFC0CB, // ELECTRIC COCKADOODLEDOO
+		FlxColor.fromRGB(44, 44, 44), // RECURSER
+	];
 
 	private var camFollow:FlxObject;
+
 	private static var prevCamFollow:FlxObject;
 
 	private var iconArray:Array<HealthIcon> = [];
@@ -88,7 +93,7 @@ class FreeplayState extends MusicBeatState
 	var defColor:FlxColor;
 	var canInteract:Bool = true;
 
-	//recursed
+	// recursed
 	var timeSincePress:Float;
 	var lastTimeSincePress:Float;
 
@@ -103,11 +108,11 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
-                Paths.clearUnusedMemory();
-                Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+		Paths.clearStoredMemory();
 
 		#if desktop DiscordClient.changePresence("In the Freeplay Menu", null); #end
-		
+
 		Catagories = Assets.getText(Paths.data("packs/PackList.txt")).split(":");
 
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
@@ -119,12 +124,12 @@ class FreeplayState extends MusicBeatState
 			bg.antialiasing = false;
 			bg.color = FlxColor.multiply(bg.color, FlxColor.fromRGB(50, 50, 50));
 			add(bg);
-			
+
 			bgShader = new Shaders.GlitchEffect();
 			bgShader.waveAmplitude = 0.1;
 			bgShader.waveFrequency = 5;
 			bgShader.waveSpeed = 2;
-			
+
 			defColor = bg.color;
 			bg.shader = bgShader.shader;
 		}
@@ -136,13 +141,12 @@ class FreeplayState extends MusicBeatState
 			bg.scrollFactor.set();
 			add(bg);
 		}
-		
 
 		for (i in 0...Catagories.length)
 		{
 			Highscore.load();
 
-			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.data('packs/' + (Catagories[i].toLowerCase()) + "/pack.png", "preload"));
+			var CurrentSongIcon:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.data('packs/' + (Catagories[i].toLowerCase()) + "/pack.png", "preload"));
 			CurrentSongIcon.centerOffsets(false);
 			CurrentSongIcon.x = (1000 * i + 1);
 			CurrentSongIcon.y = (FlxG.height / 2) - 256;
@@ -167,13 +171,13 @@ class FreeplayState extends MusicBeatState
 		}
 
 		add(camFollow);
-		
+
 		FlxG.camera.follow(camFollow, LOCKON, 0.04);
 		FlxG.camera.focusOn(camFollow.getPosition());
 
-                #if mobile
-                addVirtualPad(LEFT_FULL, A_B_C);
-                #end
+		#if mobile
+		addVirtualPad(LEFT_FULL, A_B_C);
+		#end
 
 		super.create();
 	}
@@ -186,10 +190,10 @@ class FreeplayState extends MusicBeatState
 		{
 			// Song, Character Icon, Week
 			var args:Array<String> = song.split(":");
-				
+
 			addWeek([args[0]], Std.parseInt(args[2]), [args[1]]);
 		}
-	}	
+	}
 
 	var scoreBG:FlxSprite;
 
@@ -230,30 +234,32 @@ class FreeplayState extends MusicBeatState
 		diffText = new FlxText(scoreText.x, scoreText.y + 15, 0, "", 24);
 		diffText.setFormat(Paths.font("comic.ttf"), 24, FlxColor.WHITE, LEFT);
 		diffText.scrollFactor.set();
- 
+
 		add(diffText);
 		add(scoreText);
 
-		FlxTween.tween(scoreBG,{y: 0},0.5,{ease: FlxEase.expoInOut});
-		FlxTween.tween(scoreText,{y: -5},0.5,{ease: FlxEase.expoInOut});
-		FlxTween.tween(diffText,{y: 30},0.5,{ease: FlxEase.expoInOut});
+		FlxTween.tween(scoreBG, {y: 0}, 0.5, {ease: FlxEase.expoInOut});
+		FlxTween.tween(scoreText, {y: -5}, 0.5, {ease: FlxEase.expoInOut});
+		FlxTween.tween(diffText, {y: 30}, 0.5, {ease: FlxEase.expoInOut});
 
 		for (song in 0...grpSongs.length)
 		{
 			grpSongs.members[song].unlockY = true;
 
 			// item.targetY = bullShit - curSelected;
-			FlxTween.tween(grpSongs.members[song], {y: song, alpha: 1}, 0.5, {ease: FlxEase.expoInOut, onComplete: function(twn:FlxTween)
-			{
-				grpSongs.members[song].unlockY = false;
+			FlxTween.tween(grpSongs.members[song], {y: song, alpha: 1}, 0.5, {
+				ease: FlxEase.expoInOut,
+				onComplete: function(twn:FlxTween)
+				{
+					grpSongs.members[song].unlockY = false;
 
-				canInteract = true;
-			}});
+					canInteract = true;
+				}
+			});
 		}
 
-                #if PRELOAD_ALL
-
-                var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
+		#if PRELOAD_ALL
+		var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
 		textBG.alpha = 0.6;
 		add(textBG);
 
@@ -268,7 +274,7 @@ class FreeplayState extends MusicBeatState
 		text.setFormat(Paths.font("vcr.ttf"), size, FlxColor.WHITE, RIGHT);
 		text.scrollFactor.set();
 		add(text);
-                #end
+		#end
 
 		changeSelection();
 		changeDiff();
@@ -284,7 +290,7 @@ class FreeplayState extends MusicBeatState
 		CurrentPack += change;
 		if (CurrentPack == -1)
 			CurrentPack = Catagories.length - 1;
-		
+
 		if (CurrentPack == Catagories.length)
 			CurrentPack = 0;
 
@@ -294,7 +300,7 @@ class FreeplayState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-		FlxTween.tween(FlxG.camera, {zoom:1.05}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
+		FlxTween.tween(FlxG.camera, {zoom: 1.05}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
 	}
 
 	public function addWeek(songs:Array<String>, weekNum:Int, ?songCharacters:Array<String>)
@@ -315,7 +321,7 @@ class FreeplayState extends MusicBeatState
 				case "unfairness": FlxG.save.data.unfairnessFound;
 				case "kabunga": FlxG.save.data.exbungoFound;
 				case "exploitation": FlxG.save.data.exploitationFound;
-				//case "eletric-cockadoodledoo": FlxG.save.data.bananacoreUnlocked;
+				// case "eletric-cockadoodledoo": FlxG.save.data.bananacoreUnlocked;
 				case "recursed": FlxG.save.data.recursedUnlocked;
 				case 'secret-mod-leak': FlxG.save.data.secretModLeakUnlocked;
 				default: true;
@@ -328,7 +334,7 @@ class FreeplayState extends MusicBeatState
 				num++;
 		}
 	}
-	
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -346,39 +352,39 @@ class FreeplayState extends MusicBeatState
 			{
 				resetPresses();
 			}
-				if (pressSpeeds.length >= pressUnlockNumber)
+			if (pressSpeeds.length >= pressUnlockNumber)
+			{
+				var canPass:Bool = true;
+				for (i in 0...pressSpeeds.length)
 				{
-					var canPass:Bool = true;
-					for (i in 0...pressSpeeds.length)
+					var pressSpeed = pressSpeeds[i];
+					if (pressSpeed >= 0.5)
 					{
-						var pressSpeed = pressSpeeds[i];
-						if (pressSpeed >= 0.5)
-						{
-							canPass = false;
-						}
-					}
-					if (canPass)
-					{
-						recursedUnlock();
-					}
-					else
-					{
-						resetPresses();
+						canPass = false;
 					}
 				}
+				if (canPass)
+				{
+					recursedUnlock();
+				}
+				else
+				{
+					resetPresses();
+				}
 			}
-			else
-			{
-				timeSincePress = 0;
-			}
+		}
+		else
+		{
+			timeSincePress = 0;
+		}
 
 		// Selector Menu Functions
-		if (!InMainFreeplayState) 
+		if (!InMainFreeplayState)
 		{
 			scoreBG = null;
 			scoreText = null;
 			diffText = null;
-			
+
 			if (controls.LEFT_P && canInteract)
 			{
 				UpdatePackSelection(-1);
@@ -397,60 +403,74 @@ class FreeplayState extends MusicBeatState
 				{
 					loadingPack = true;
 					LoadProperPack();
-					
-					for (item in icons) { FlxTween.tween(item, {alpha: 0, y: item.y - 200}, 0.2, {ease: FlxEase.cubeInOut}); }
-					for (item in titles) { FlxTween.tween(item, {alpha: 0, y: item.y - 200}, 0.2, {ease: FlxEase.cubeInOut}); }
+
+					for (item in icons)
+					{
+						FlxTween.tween(item, {alpha: 0, y: item.y - 200}, 0.2, {ease: FlxEase.cubeInOut});
+					}
+					for (item in titles)
+					{
+						FlxTween.tween(item, {alpha: 0, y: item.y - 200}, 0.2, {ease: FlxEase.cubeInOut});
+					}
 
 					new FlxTimer().start(0.2, function(Dumbshit:FlxTimer)
 					{
-						for (item in icons) { item.visible = false; }
-						for (item in titles) { item.visible = false; }
+						for (item in icons)
+						{
+							item.visible = false;
+						}
+						for (item in titles)
+						{
+							item.visible = false;
+						}
 
 						GoToActualFreeplay();
 						resetPresses();
 						InMainFreeplayState = true;
 						loadingPack = false;
-					});	
+					});
 				});
 			}
 			if (controls.BACK && canInteract)
 			{
 				FlxG.switchState(new MainMenuState());
-			}	
-		
+			}
+
 			return;
 		}
 
 		// Freeplay Functions
 		else
 		{
-                if(#if mobile virtualPad.buttonC.justPressed || #end FlxG.keys.justPressed.SPACE) {
-                if(instPlaying != curSelected) {
-                #if PRELOAD_ALL
-		destroyFreeplayVocals();
-		FlxG.sound.music.volume = 0;
-		var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
-		PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
-		if (PlayState.SONG.needsVoices)
-			vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
-		else
-		        vocals = new FlxSound();
+			if (#if mobile virtualPad.buttonC.justPressed || #end FlxG.keys.justPressed.SPACE)
+			{
+				if (instPlaying != curSelected)
+				{
+					#if PRELOAD_ALL
+					destroyFreeplayVocals();
+					FlxG.sound.music.volume = 0;
+					var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
+					PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+					if (PlayState.SONG.needsVoices)
+						vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
+					else
+						vocals = new FlxSound();
 
-		FlxG.sound.list.add(vocals);
-		FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.7);
-		vocals.play();
-		vocals.persist = true;
-		vocals.looped = true;
-		vocals.volume = 0.7;
-		instPlaying = curSelected;
-		#end
-                }
-                }
+					FlxG.sound.list.add(vocals);
+					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.7);
+					vocals.play();
+					vocals.persist = true;
+					vocals.looped = true;
+					vocals.volume = 0.7;
+					instPlaying = curSelected;
+					#end
+				}
+			}
 
 			var upP = controls.UP_P;
 			var downP = controls.DOWN_P;
 			var accepted = controls.ACCEPT;
-	
+
 			if (upP && canInteract)
 			{
 				stringKey = 'up';
@@ -465,78 +485,100 @@ class FreeplayState extends MusicBeatState
 				changeDiff(-1);
 			if (controls.RIGHT_P && canInteract)
 				changeDiff(1);
-	
+
 			if (controls.BACK && canInteract)
 			{
 				loadingPack = true;
 				canInteract = false;
-				
+
 				for (i in grpSongs)
 				{
 					i.unlockY = true;
-	
-					FlxTween.tween(i, {y: 5000, alpha: 0}, 0.3, {onComplete: function(twn:FlxTween)
-					{
-						i.unlockY = false;
 
-						for (item in icons) { item.visible = true; FlxTween.tween(item, {alpha: 1, y: item.y + 200}, 0.2, {ease: FlxEase.cubeInOut}); }
-						for (item in titles) { item.visible = true; FlxTween.tween(item, {alpha: 1, y: item.y + 200}, 0.2, {ease: FlxEase.cubeInOut}); }
-
-						if (scoreBG != null)
+					FlxTween.tween(i, {y: 5000, alpha: 0}, 0.3, {
+						onComplete: function(twn:FlxTween)
 						{
-							FlxTween.tween(scoreBG,{y: scoreBG.y - 100},0.5,{ease: FlxEase.expoInOut, onComplete: 
-							function(spr:FlxTween)
+							i.unlockY = false;
+
+							for (item in icons)
 							{
-								scoreBG = null;
-							}});
-						}
-
-						if (scoreText != null)
-						{
-							FlxTween.tween(scoreText,{y: scoreText.y - 100},0.5,{ease: FlxEase.expoInOut, onComplete: 
-							function(spr:FlxTween)
+								item.visible = true;
+								FlxTween.tween(item, {alpha: 1, y: item.y + 200}, 0.2, {ease: FlxEase.cubeInOut});
+							}
+							for (item in titles)
 							{
-								scoreText = null;
-							}});
-						}
+								item.visible = true;
+								FlxTween.tween(item, {alpha: 1, y: item.y + 200}, 0.2, {ease: FlxEase.cubeInOut});
+							}
 
-						if (diffText != null)
-						{
-							FlxTween.tween(diffText,{y: diffText.y - 100},0.5,{ease: FlxEase.expoInOut, onComplete: 
-							function(spr:FlxTween)
+							if (scoreBG != null)
 							{
-								diffText = null;
-							}});
+								FlxTween.tween(scoreBG, {y: scoreBG.y - 100}, 0.5, {
+									ease: FlxEase.expoInOut,
+									onComplete: function(spr:FlxTween)
+									{
+										scoreBG = null;
+									}
+								});
+							}
+
+							if (scoreText != null)
+							{
+								FlxTween.tween(scoreText, {y: scoreText.y - 100}, 0.5, {
+									ease: FlxEase.expoInOut,
+									onComplete: function(spr:FlxTween)
+									{
+										scoreText = null;
+									}
+								});
+							}
+
+							if (diffText != null)
+							{
+								FlxTween.tween(diffText, {y: diffText.y - 100}, 0.5, {
+									ease: FlxEase.expoInOut,
+									onComplete: function(spr:FlxTween)
+									{
+										diffText = null;
+									}
+								});
+							}
+
+							InMainFreeplayState = false;
+							loadingPack = false;
+
+							for (i in grpSongs)
+							{
+								remove(i);
+							}
+							for (i in iconArray)
+							{
+								remove(i);
+							}
+
+							FlxTween.color(bg, 0.25, bg.color, defColor);
+
+							// MAKE SURE TO RESET EVERYTHIN!
+							songs = [];
+							grpSongs.members = [];
+							iconArray = [];
+							curSelected = 0;
+							canInteract = true;
 						}
-	
-						InMainFreeplayState = false;
-						loadingPack = false;
-
-						for (i in grpSongs){remove(i);}
-						for (i in iconArray){remove(i);}
-
-						FlxTween.color(bg, 0.25, bg.color, defColor);
-
-						// MAKE SURE TO RESET EVERYTHIN!
-						songs = [];
-						grpSongs.members = [];
-						iconArray = [];
-						curSelected = 0;
-						canInteract = true;
-					}});
+					});
 				}
 			}
-	
+
 			if (accepted && canInteract)
 			{
 				Main.currentPackGlobal = Catagories[CurrentPack].toLowerCase();
 
 				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
-		
+
 				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
 				PlayState.isStoryMode = false;
 				PlayState.storyDifficulty = curDifficulty;
-	
+
 				PlayState.storyWeek = songs[curSelected].week;
 				LoadingState.loadAndSwitchState(new CharacterSelectState());
 			}
@@ -554,9 +596,9 @@ class FreeplayState extends MusicBeatState
 
 		if (scoreText != null)
 			scoreText.text = LanguageManager.getTextString('freeplay_personalBest') + lerpScore;
-			positionHighscore();
-
+		positionHighscore();
 	}
+
 	function positionHighscore()
 	{
 		scoreText.x = FlxG.width - scoreText.width - 6;
@@ -627,7 +669,7 @@ class FreeplayState extends MusicBeatState
 
 			timeSincePress = 0;
 			pressSpeeds.push(Math.abs(pressSpeed));
-			
+
 			var inputKeys = controls.getInputsFor(Controls.stringControlToControl(stringKey), Device.Keys);
 			if (pressSpeeds.length == 1)
 			{
@@ -644,21 +686,21 @@ class FreeplayState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('recursed/thud', 'shared'), 1, false, null, true);
 			}
 		}
-		
+
 		curSelected += change;
 
 		if (curSelected < 0)
 			curSelected = songs.length - 1;
-	
+
 		if (curSelected >= songs.length)
 			curSelected = 0;
-		
+
 		var songsWithOneDifficulty = [3, 8, 9, 10];
 		if (!songsWithOneDifficulty.contains(songs[curSelected].week))
 		{
 			if (curDifficulty < 0)
 				curDifficulty = 2;
-				
+
 			if (curDifficulty > 2)
 				curDifficulty = 0;
 		}
@@ -699,11 +741,13 @@ class FreeplayState extends MusicBeatState
 		}
 		FlxTween.color(bg, 0.25, bg.color, songColors[songs[curSelected].week]);
 	}
+
 	function resetPresses()
 	{
 		pressSpeeds = new Array<Float>();
 		pressUnlockNumber = new FlxRandom().int(20, 40);
 	}
+
 	function recursedUnlock()
 	{
 		canInteract = false;
@@ -750,12 +794,12 @@ class FreeplayState extends MusicBeatState
 					FlxTween.tween(object, {x: (FlxG.width / 2) - (object.width), y: (FlxG.height / 2) - (object.height)}, 1, {ease: FlxEase.backOut});
 				}
 				FlxG.camera.shake(0.05, 3);
-				
+
 				FlxG.sound.music.stop();
 				FlxG.sound.playMusic(Paths.sound('recursed/rumble', 'shared'), 0.8, false, null);
 				FlxG.sound.play(Paths.sound('recursed/piecedTogether', 'shared'), 1, false, null, true);
 
-				FlxG.camera.fade(FlxColor.WHITE, 3, false, function() 
+				FlxG.camera.fade(FlxColor.WHITE, 3, false, function()
 				{
 					FlxG.camera.shake(0.1, 0.5);
 					FlxG.camera.fade(FlxColor.BLACK, 0);
@@ -784,8 +828,10 @@ class FreeplayState extends MusicBeatState
 		});
 	}
 
-        public static function destroyFreeplayVocals() {
-		if(vocals != null) {
+	public static function destroyFreeplayVocals()
+	{
+		if (vocals != null)
+		{
 			vocals.stop();
 			vocals.destroy();
 		}

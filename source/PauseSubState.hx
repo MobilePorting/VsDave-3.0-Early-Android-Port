@@ -35,17 +35,17 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
-		
+
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			default:
-				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);	
+				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
 			case "exploitation":
 				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast-ohno'), true, true);
 				expungedSelectWaitTime = new FlxRandom().float(0.5, 2);
 				patienceTime = new FlxRandom().float(15, 30);
 		}
-		
+
 		pauseMusic.volume = 0;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
@@ -78,17 +78,20 @@ class PauseSubState extends MusicBeatSubstate
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
-		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5,
-		onComplete: function(tween:FlxTween)
-		{
-			switch (PlayState.SONG.song.toLowerCase())
+		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {
+			ease: FlxEase.quartInOut,
+			startDelay: 0.5,
+			onComplete: function(tween:FlxTween)
 			{
-				case 'exploitation':
-					doALittleTrolling(levelDifficulty);
-				case 'eletric-cockadoodledoo':
-					cockadoodledooTrolling(levelDifficulty);
+				switch (PlayState.SONG.song.toLowerCase())
+				{
+					case 'exploitation':
+						doALittleTrolling(levelDifficulty);
+					case 'eletric-cockadoodledoo':
+						cockadoodledooTrolling(levelDifficulty);
+				}
 			}
-		}});
+		});
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
@@ -105,10 +108,10 @@ class PauseSubState extends MusicBeatSubstate
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
-                #if mobile
-                addVirtualPad(UP_DOWN, A);
-                addVirtualPadCamera();
-                #end
+		#if mobile
+		addVirtualPad(UP_DOWN, A);
+		addVirtualPadCamera();
+		#end
 	}
 
 	override function update(elapsed:Float)
@@ -153,6 +156,7 @@ class PauseSubState extends MusicBeatSubstate
 			selectOption();
 		}
 	}
+
 	function selectOption()
 	{
 		var daSelected:String = menuItems[curSelected];
@@ -167,49 +171,49 @@ class PauseSubState extends MusicBeatSubstate
 				FlxG.resetState();
 			case "Developer No Miss":
 				PlayState.devBotplay = !PlayState.devBotplay;
-                        case "Charting Menu":
-                        switch (PlayState.curSong.toLowerCase())
-			{
-				case 'supernovae':
-					PlayState.SONG = Song.loadFromJson("cheating", "cheating"); // you dun fucked up
-					FlxG.save.data.cheatingFound = true;
-					PlayState.shakeCam = false;
-					PlayState.screenshader.Enabled = false;
-					FlxG.switchState(new PlayState());
-					return;
+			case "Charting Menu":
+				switch (PlayState.curSong.toLowerCase())
+				{
+					case 'supernovae':
+						PlayState.SONG = Song.loadFromJson("cheating", "cheating"); // you dun fucked up
+						FlxG.save.data.cheatingFound = true;
+						PlayState.shakeCam = false;
+						PlayState.screenshader.Enabled = false;
+						FlxG.switchState(new PlayState());
+						return;
 					// FlxG.switchState(new VideoState('assets/videos/fortnite/fortniteballs.webm', new CrasherState()));
-				case 'cheating':
-					PlayState.SONG = Song.loadFromJson("unfairness", "unfairness"); // you dun fucked up again
-					FlxG.save.data.unfairnessFound = true;
-					PlayState.shakeCam = false;
-					PlayState.screenshader.Enabled = false;
-					FlxG.switchState(new PlayState());
-					return;
-				case 'unfairness':
-					PlayState.shakeCam = false;
-					PlayState.screenshader.Enabled = false;
-					FlxG.switchState(new TerminalState());
-					#if desktop
-					DiscordClient.changePresence("I have your IP address", null, null, true);
-					#end
-				case 'glitch':
-					PlayState.SONG = Song.loadFromJson("kabunga", "kabunga"); // lol you loser
-					FlxG.save.data.exbungoFound = true;
-					PlayState.shakeCam = false;
-					PlayState.screenshader.Enabled = false;
-					FlxG.switchState(new PlayState());
-					return;
-				case 'kabunga':
-					FlxG.openURL("https://benjaminpants.github.io/muko_firefox/index.html");
-					System.exit(0);
-				default:
-					PlayState.shakeCam = false;
-					PlayState.screenshader.Enabled = false;
-					FlxG.switchState(new ChartingState());
-					#if desktop
-					DiscordClient.changePresence("Chart Editor", null, null, true);
-					#end
-			}
+					case 'cheating':
+						PlayState.SONG = Song.loadFromJson("unfairness", "unfairness"); // you dun fucked up again
+						FlxG.save.data.unfairnessFound = true;
+						PlayState.shakeCam = false;
+						PlayState.screenshader.Enabled = false;
+						FlxG.switchState(new PlayState());
+						return;
+					case 'unfairness':
+						PlayState.shakeCam = false;
+						PlayState.screenshader.Enabled = false;
+						FlxG.switchState(new TerminalState());
+						#if desktop
+						DiscordClient.changePresence("I have your IP address", null, null, true);
+						#end
+					case 'glitch':
+						PlayState.SONG = Song.loadFromJson("kabunga", "kabunga"); // lol you loser
+						FlxG.save.data.exbungoFound = true;
+						PlayState.shakeCam = false;
+						PlayState.screenshader.Enabled = false;
+						FlxG.switchState(new PlayState());
+						return;
+					case 'kabunga':
+						FlxG.openURL("https://benjaminpants.github.io/muko_firefox/index.html");
+						System.exit(0);
+					default:
+						PlayState.shakeCam = false;
+						PlayState.screenshader.Enabled = false;
+						FlxG.switchState(new ChartingState());
+						#if desktop
+						DiscordClient.changePresence("Chart Editor", null, null, true);
+						#end
+				}
 			case "Exit to menu":
 				PlayState.screenshader.shader.uampmul.value[0] = 0;
 				PlayState.screenshader.Enabled = false;
@@ -233,6 +237,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		super.destroy();
 	}
+
 	function doALittleTrolling(levelDifficulty:FlxText)
 	{
 		var difficultyHeight = levelDifficulty.height;
@@ -255,6 +260,7 @@ class PauseSubState extends MusicBeatSubstate
 			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.05 * i});
 		}
 	}
+
 	function cockadoodledooTrolling(levelDifficulty:FlxText)
 	{
 		var amountOfDifficulties = 247;
@@ -276,6 +282,7 @@ class PauseSubState extends MusicBeatSubstate
 			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.01 * i});
 		}
 	}
+
 	function changeSelection(change:Int = 0):Void
 	{
 		curSelected += change;

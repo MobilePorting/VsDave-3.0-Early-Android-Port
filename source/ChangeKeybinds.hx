@@ -28,9 +28,9 @@ import flixel.math.FlxMath;
 import StringTools;
 
 /*
-ello again!! another reminder to not use my coding without my permission/without checking in with me :))
--vs dave dev T5mpler
-*/
+	ello again!! another reminder to not use my coding without my permission/without checking in with me :))
+	-vs dave dev T5mpler
+ */
 class ChangeKeybinds extends MusicBeatState
 {
 	var bg:FlxSprite = new FlxSprite();
@@ -41,8 +41,7 @@ class ChangeKeybinds extends MusicBeatState
 	var curItemSelected:Int = 0;
 	var curItem:FlxText;
 
-	public static var uiControls:Array<ControlUI> = 
-	[
+	public static var uiControls:Array<ControlUI> = [
 		new ControlUI('Left', 'left'),
 		new ControlUI('Down', 'down'),
 		new ControlUI('Up', 'up'),
@@ -74,9 +73,9 @@ class ChangeKeybinds extends MusicBeatState
 	{
 		bg.color = 0xFFea71fd;
 		bg.loadGraphic(MainMenuState.randomizeBG());
-      bg.scrollFactor.set();
+		bg.scrollFactor.set();
 		add(bg);
-		
+
 		var tutorial:FlxText = new FlxText(0, 50, FlxG.width / 2, LanguageManager.getTextString('keybind_tutorial'), 32);
 		tutorial.screenCenter(X);
 		tutorial.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -95,12 +94,12 @@ class ChangeKeybinds extends MusicBeatState
 
 		camFollow = new FlxObject(FlxG.width / 2, selectableItems[curItemSelected].y);
 		FlxG.camera.follow(camFollow, 0.3);
-		
+
 		changeSelection();
 
-                #if ios
-                addVirtualPad(NONE, B);
-                #end
+		#if ios
+		addVirtualPad(NONE, B);
+		#end
 
 		super.create();
 	}
@@ -164,7 +163,7 @@ class ChangeKeybinds extends MusicBeatState
 						changePresetSelection(1);
 					}
 				}
-				
+
 			case SelectKeybind:
 				if (left)
 				{
@@ -199,7 +198,7 @@ class ChangeKeybinds extends MusicBeatState
 						var controlKeybinds = KeybindPrefs.keybinds.get(currentUIControl.controlName);
 
 						var keyJustPressed = cast(keyID, FlxKey);
-						
+
 						var otherKeybind = curKeybindSelected == 1 ? 0 : 1;
 						var otherKeybindText = curTextGroup.texts.members[otherKeybind];
 						if (controlKeybinds[otherKeybind] == keyJustPressed)
@@ -211,7 +210,7 @@ class ChangeKeybinds extends MusicBeatState
 							updateText(otherKeybindText, false);
 
 							currentKeybind.text = oldKeybindText;
-		
+
 							state = KeybindState.SelectControl;
 							return;
 						}
@@ -219,17 +218,17 @@ class ChangeKeybinds extends MusicBeatState
 						{
 							controlKeybinds[curKeybindSelected] = keyJustPressed;
 						}
-						
+
 						KeybindPrefs.keybinds.set(currentUIControl.controlName, controlKeybinds);
 						PlayerSettings.player1.controls.setKeyboardScheme(Custom);
-	
+
 						FlxG.sound.play(Paths.sound('confirmMenu'));
-	
+
 						currentKeybind.text = keyJustPressed.toString();
-						
+
 						updateText(currentKeybind, false);
 						updateText(otherKeybindText, false);
-	
+
 						state = KeybindState.SelectControl;
 					}
 				}
@@ -248,6 +247,7 @@ class ChangeKeybinds extends MusicBeatState
 			}
 		}
 	}
+
 	function addControlText(uiControl:ControlUI, order:Int)
 	{
 		var uiControlKeybinds = KeybindPrefs.keybinds.get(uiControl.controlName);
@@ -286,11 +286,12 @@ class ChangeKeybinds extends MusicBeatState
 		controlGroups.push(controlGroup);
 		textGroups.push(controlGroup);
 	}
+
 	function createPresetUI()
 	{
 		var arrowOffset:Float = 100;
 		var keybindPresetGroup:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
-		
+
 		choosePreset = new FlxText(0, 200, FlxG.width / 2, LanguageManager.getTextString('keybind_preset'), 32);
 		choosePreset.screenCenter(X);
 		choosePreset.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -321,12 +322,13 @@ class ChangeKeybinds extends MusicBeatState
 		presetRight.antialiasing = true;
 		keybindPresetGroup.add(presetRight);
 		add(presetRight);
-		
+
 		var presetGroup:TextGroup = new TextGroup('presetGroup', keybindPresetGroup);
 		textGroups.push(presetGroup);
 
 		changePresetSelection();
 	}
+
 	function changeSelection(amount:Int = 0)
 	{
 		curItemSelected += amount;
@@ -345,7 +347,7 @@ class ChangeKeybinds extends MusicBeatState
 		}
 		curItem = selectableItems[curItemSelected];
 		curTextGroup = textGroups[curItemSelected];
-		
+
 		for (item in selectableItems)
 		{
 			updateText(item, item == curItem);
@@ -378,6 +380,7 @@ class ChangeKeybinds extends MusicBeatState
 			updateText(text, text == currentKeybind);
 		}
 	}
+
 	function changePresetSelection(amount:Int = 0)
 	{
 		curSelectedPreset += amount;
@@ -391,9 +394,9 @@ class ChangeKeybinds extends MusicBeatState
 			curSelectedPreset = keybindPresets.length - 1;
 		}
 		curPreset = keybindPresets[curSelectedPreset];
-		
+
 		preset.text = curPreset;
-		
+
 		preset.y = (choosePreset.y + 40) - 30;
 		preset.alpha = 0;
 		FlxTween.tween(preset, {alpha: 1, y: preset.y + 30}, 0.07);
@@ -401,6 +404,7 @@ class ChangeKeybinds extends MusicBeatState
 		presetLeft.x = preset.x - 100;
 		presetRight.x = preset.x + 100;
 	}
+
 	function changePreset()
 	{
 		switch (curPreset)
@@ -416,7 +420,7 @@ class ChangeKeybinds extends MusicBeatState
 		}
 		FlxG.sound.play(Paths.sound('confirmMenu'));
 		KeybindPrefs.saveControls();
-		
+
 		for (controlGroup in controlGroups)
 		{
 			for (text in controlGroup.texts)
@@ -447,21 +451,26 @@ class ChangeKeybinds extends MusicBeatState
 		}
 	}
 }
+
 enum KeybindState
 {
-	SelectControl; SelectKeybind; ChangeKeybind;
+	SelectControl;
+	SelectKeybind;
+	ChangeKeybind;
 }
+
 class TextGroup
 {
 	public var groupName:String;
 	public var texts:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
-	
+
 	public function new(groupName:String, texts:FlxTypedGroup<FlxText>)
 	{
 		this.groupName = groupName;
 		this.texts = texts;
 	}
 }
+
 class ControlUI
 {
 	public var uiName:String;

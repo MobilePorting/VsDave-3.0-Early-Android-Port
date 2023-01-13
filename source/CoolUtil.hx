@@ -12,9 +12,13 @@ using StringTools;
 class CoolUtil
 {
 	public static var difficultyArray:Array<String> = new Array<String>();
-	public static var exploitationDifficulties:Array<String> = ["YOU'RE FUCKED", 'HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA', "YOU CAN'T ESCAPE FROM THE FUN ALREADY", 
-	"EXPUNGED'S REIGN IS HERE, YOU'RE FUCKED", "YOU HAVE REACHED THE END OF THE RABBIT HOLE", "YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS", ];
-	
+	public static var exploitationDifficulties:Array<String> = [
+		                          "YOU'RE FUCKED",          'HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA',
+		                                              "YOU CAN'T ESCAPE FROM THE FUN ALREADY",
+		"EXPUNGED'S REIGN IS HERE, YOU'RE FUCKED", "YOU HAVE REACHED THE END OF THE RABBIT HOLE",
+		"YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS",
+	];
+
 	public static function init()
 	{
 		difficultyArray = new Array<String>();
@@ -33,7 +37,6 @@ class CoolUtil
 				return exploitationDifficulties[new FlxRandom().int(0, exploitationDifficulties.length - 1)];
 			default:
 				return difficultyArray[PlayState.storyDifficulty];
-
 		}
 	}
 
@@ -47,18 +50,18 @@ class CoolUtil
 		}
 		return daList;
 	}
-	
+
 	public static function coolStringFile(path:String):Array<String>
+	{
+		var daList:Array<String> = path.trim().split('\n');
+
+		for (i in 0...daList.length)
 		{
-			var daList:Array<String> = path.trim().split('\n');
-	
-			for (i in 0...daList.length)
-			{
-				daList[i] = daList[i].trim();
-			}
-	
-			return daList;
+			daList[i] = daList[i].trim();
 		}
+
+		return daList;
+	}
 
 	public static function numberArray(max:Int, ?min = 0):Array<Int>
 	{
@@ -69,25 +72,27 @@ class CoolUtil
 		}
 		return dumbArray;
 	}
+
 	public static function formatString(string:String):String
+	{
+		var split:Array<String> = string.split('-');
+		var formattedString:String = '';
+		for (i in 0...split.length)
 		{
-			 var split:Array<String> = string.split('-');
-			 var formattedString:String = '';
-			 for (i in 0...split.length) 
-			 {
-				  var piece:String = split[i];
-				  var allSplit = piece.split('');
-				  var firstLetterUpperCased = allSplit[0].toUpperCase();
-				  var substring = piece.substr(1, piece.length - 1);
-				  var newPiece = firstLetterUpperCased + substring;
-				  if (i != split.length - 1)
-				  {
-						newPiece += " ";
-				  }
-				  formattedString += newPiece;
-			 }
-			 return formattedString;
+			var piece:String = split[i];
+			var allSplit = piece.split('');
+			var firstLetterUpperCased = allSplit[0].toUpperCase();
+			var substring = piece.substr(1, piece.length - 1);
+			var newPiece = firstLetterUpperCased + substring;
+			if (i != split.length - 1)
+			{
+				newPiece += " ";
+			}
+			formattedString += newPiece;
 		}
+		return formattedString;
+	}
+
 	public static function getMinAndMax(value1:Float, value2:Float):Array<Float>
 	{
 		var minAndMaxs = new Array<Float>();
@@ -97,7 +102,7 @@ class CoolUtil
 
 		minAndMaxs.push(min);
 		minAndMaxs.push(max);
-		
+
 		return minAndMaxs;
 	}
 
@@ -105,6 +110,7 @@ class CoolUtil
 	{
 		Assets.cache.image.set(image, lime.graphics.Image.fromFile(image));
 	}
+
 	public static function isArrayEqualTo(array1:Array<Dynamic>, array2:Array<Dynamic>)
 	{
 		if (array1.length != array2.length)
