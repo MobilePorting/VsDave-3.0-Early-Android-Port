@@ -22,7 +22,6 @@ jobs:
         run: |
           rm -rR ./haxe-4.2.5-linux64
           rm -rR ./neko-2.3.0-linux64
-          ls -la
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
